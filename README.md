@@ -202,3 +202,112 @@
 5. Создать расширение класса `Rectangle`, которое будет обладать вычисляемым свойством площадь. Вывести в консоль площадь уже ранее созданного объекта.
 7. После завершения работ над заданием перевести задачу в Jira в статус "Code Review", уведомить своего ментора и залогировать затраченное время.
 
+
+---
+## IV. Верстка
+---
+
+**Максимальное время выполнения блока - 3 дня**
+
+### Теоретическая часть
+
+В случае если по ссылке встречается пошаговый гайд - рекомендуется его выполнить в отдельном проекте.
+
+**1. Начало разработки под iOS (Apple)**
++ [Первые шаги в UI](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/BuildABasicUI.html#//apple_ref/doc/uid/TP40015214-CH5-SW1) **(\*\*\*\*)**
++ [Глоссарий](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/GlossaryDefinitions.html#//apple_ref/doc/uid/TP40015214-CH12-SW1)**(\*\*\)**
+
+**2. UIKit**
++ [Фреймворк UIKit и его компоненты](https://developer.apple.com/documentation/uikit) **(\*\*\)**
++ [Views and Controls](https://developer.apple.com/documentation/uikit/views_and_controls) **(\*\*\*)**
++ [View Controllers](https://developer.apple.com/documentation/uikit/view_controllers) **(\*\*\*)**
+
+**3. UIViewController**
++ [Жизненный цикл UIViewController](https://habrahabr.ru/post/129557/) **(\*\*\*)**
+
+**4. UINavigationControler**
++ [Обзор](https://developer.apple.com/documentation/uikit/uinavigationcontroller) **(\*\*\*)**
+
+**5. UITabBarController**
++ [Обзор](https://developer.apple.com/documentation/uikit/uitabbarcontroller) **(\*\*\*)**
+
+**6. Auto Layout**
++ [Основы](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1) **(\*\*\*\*)**
++ [Constraints](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html#//apple_ref/doc/uid/TP40010853-CH9-SW1) **(\*\*\*\*)**
++ [Constraints в Interface Builder](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithConstraintsinInterfaceBuidler.html#//apple_ref/doc/uid/TP40010853-CH10-SW1) **(\*\*\*\*)**
++ [UIStackView](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11-SW1) **(\*\*\*)**
+
+**7. UITableView, UICollectionView**
++ [Обзор UITableView](https://developer.apple.com/documentation/uikit/uitableview) **(\*\*\)**
++ [Работа с UITableView](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/CreateATableView.html#//apple_ref/doc/uid/TP40015214-CH8-SW1)**(\*\*\*\*)**
++ [Обзор UICollectionView](https://developer.apple.com/documentation/uikit/uicollectionview) **(\*\*\)**
++ [Работа с UICollectionView](https://www.raywenderlich.com/136159/uicollectionview-tutorial-getting-started) **(\*\*\*)**
+
+**8. Ресурсы**
++ [Добавление шрифтов](https://medium.com/yay-its-erica/how-to-import-fonts-into-xcode-swift-3-f0de7e921ef8) **(\*\*\)**
++ [Разрешения изображений](https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/image-size-and-resolution/) **(\*\*\)**
++ [Zeplin](https://habrahabr.ru/company/uteam/blog/315542/) **(\*\*\)**
+
+**Важно** В компании при разработке любого мобильного приложения считается правилом хорошего тона придерживаться нефункциональных требований, описанных в [данной статье](https://kb.simbirsoft.com/article/nonfunctional-support/)
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `layouts` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `dev`.
+Код должен быть читабельным и написан согласно code-style. В системе Jira также необходимо создать задачу в эпике со своим именем, в которую после завершения будет залогировано время.
+
+1. Создать в эпике сабтаск с типом "Mobile" с названием "IV. Верстка" и взять ее в работу.
+2. Добавить иконки приложения и сделать на экране iPhone отображаемое название приложения "Хочу помочь". Ресурсы иконок [тут](https://app.zeplin.io/project/5a730a28baefbc1611730670/screen/5a730a7e623e5b10ee3387ee).
+3. Реализовать Splash Screen согласно [макету](https://app.zeplin.io/project/5a730a28baefbc1611730670/screen/5a730ad0f34da268755ce974).
+4. Создать экран "Категории помощи" согласно [макету](https://app.zeplin.io/project/5a730a28baefbc1611730670/screen/5a730ab2cb8d0463108c4826).
+ - Необходимо реализовать `UITabBarController` согласно макету. Экран "Категории помощи" должен быть показан после Splash Screen. По нажатию по стрелки назад, приложение закрывается.
+ - Экран "Категории помощи" должен лежать в стеке `Navigation Controller`
+ - Кастомизация `Navigation Bar` должна быть произведена через `UINavigationBar.appearance`
+ - Кнопку "Назад" в верхнем баре - не реализовывать
+ - Сам экран должен представлять из себя `UIViewController` с добавленной на него `UICollectionView`.
+ - Верстка должна быть реализована средствами Interface Builder (Storybord, .xib, Auto Layouts).
+ - Для ячеек `CollectionView` должен быть создан свой класс - наследник `UICollectionViewCell`
+ - Верстка должна быть выполнена с учетом "pixel perfect" - когда все элементы дизайна расположены и имеют размеры абсолютно идентичные макету.
+ - Все переиспользуемые константы должны быть вынесены в глобальные для доступа из других мест
+ - Никаких "магических чисел", все должно иметь понятные названия
+5. Подключить статические анализаторы кода и исправить выявленные замечания
+ - Установить [SwiftLint](https://github.com/realm/SwiftLint)
+ - Запустить и исправить выявленные SwiftLint замечания
+6. После завершения работ над заданием перевести задачу в Jira в статус "Code Review", уведомить своего ментора и залогировать затраченное время.
+
+---
+## V. Структуры данных
+---
+
+**Максимальное время выполнения блока - 4 дня**
+
+### Теоретическая часть
+
+**1. JSON:**
++ [Понятие](https://ru.wikipedia.org/wiki/JSON)  **(\*\*\*\*)**
++ [Парсинг в Swift 4](https://benscheirman.com/2017/06/swift-json/)  **(\*\*\*\*)**
++ Популярный фреймворк для парсинга [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) **(\*\*\)**
+
+**2. Работа с файлами:**
++ [Чтение из файла в Bundle](https://www.hackingwithswift.com/example-code/strings/how-to-load-a-string-from-a-file-in-your-bundle)  **(\*\*\*\*)**
+
+**3. Service-oriented architecture (SOA)**
++ [Архитектурный дизайн МП](https://habrahabr.ru/company/redmadrobot/blog/246551/)  **(\*\*\*\*)**
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `data_structures` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `dev`.
+Код должен быть читабельным и написан согласно code-style. Верстка экранов должна быть выполнена по принципу pixel-perfect.
+
+1. Создать в эпике сабтаск с типом "Mobile" с названием "V. Структуры данных" и взять ее в работу.
+2. Сверстать экран "Благотворительных событий" согласно [макету](https://zpl.io/bl1vx7P). Переключение между "Текущие" и "Завершенные" **не реализовывать**. Работать только с текущими событиями. Переход на этот экран осуществляется при выборе любой категории на экране "Категории помощи".
+3. Сверстать экран "Детальное описание события" согласно [макету](https://zpl.io/VD75ojv). Переход на этот экран осуществляется при выборе любого события из списка, данный экран должен получить информацию о том, какое событие было выбрано на предыдущем шаге.
+4. Необходимо создать два json'а. Содержащих в себе массивы категорий и благотворительных событий. Информация об объектах должна быть достаточной для формирования отображений на экранах, а также для корректного разделения по категориям помощи. Каждый объект должен обладать уникальным (среди объектов своего типа) идентификатором. Проверить корректность созданных json-ов через [online-parser](http://json.parser.online.fr/). Записать их в 2 файла и поместить в проект.
+5. Необходимо создать сущности соответствующие понятиям Категория и Событие.
+6. Создать сервис, который будет читать созданные json из файлов, парсить их и преобразовывать в массивы.
+7. Наполнить экраны полученными данными. В сервисе учесть возможность фильтрации по категориям.
+8. Запустить статические анализаторы кода (SwiftLint) и исправить найденные замечания
+9. После завершения работ над заданием перевести задачу в Jira в статус "Code Review", уведомить своего ментора и залогировать затраченное время.
+
+---
