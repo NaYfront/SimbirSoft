@@ -11,6 +11,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
+    let menu = Menu()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +26,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return menu.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.categoryNameLabel.text = menu.categories[indexPath.row].name
+        cell.categoryImageView.image = menu.categories[indexPath.row].image
         
         return cell
     }
