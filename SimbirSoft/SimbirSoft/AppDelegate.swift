@@ -11,7 +11,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let standard = UINavigationBarAppearance()
+        standard.configureWithOpaqueBackground()
+
+        standard.backgroundColor = UIColor(named: "leaf") ?? .purple
+        standard.titleTextAttributes = [.font: UIFont(name: "OfficinaSansExtraBoldSCC", size: 30) ?? UIFont(), .foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = standard
+        UINavigationBar.appearance().compactAppearance = standard
+        UINavigationBar.appearance().scrollEdgeAppearance = standard
+        
         return true
     }
 
