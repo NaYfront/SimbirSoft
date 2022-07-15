@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392E0E712881C1F3005DE57C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392E0E702881C1F3005DE57C /* ViewController.xib */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
 		39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */; };
 		39B7BEA92881742D00077A5D /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */; };
 		39B7BEB028817F4700077A5D /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEAF28817F4700077A5D /* Menu.swift */; };
+		39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEB52881B4A300077A5D /* MainTabBarController.swift */; };
+		39B7BEB82881B74300077A5D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEB72881B74300077A5D /* CustomTabBar.swift */; };
 		39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F6287F32740037E660 /* AppDelegate.swift */; };
 		39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F8287F32740037E660 /* SceneDelegate.swift */; };
 		39F5D4FB287F32740037E660 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4FA287F32740037E660 /* ViewController.swift */; };
@@ -22,11 +25,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		392E0E702881C1F3005DE57C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
 		39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		39B7BEAF28817F4700077A5D /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		39B7BEB52881B4A300077A5D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		39B7BEB72881B74300077A5D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		39F5D4F3287F32740037E660 /* SimbirSoft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimbirSoft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F5D4F6287F32740037E660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39F5D4F8287F32740037E660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				39F5D4FA287F32740037E660 /* ViewController.swift */,
+				39B7BEB52881B4A300077A5D /* MainTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -90,6 +97,7 @@
 			children = (
 				39F5D4FC287F32740037E660 /* Main.storyboard */,
 				39B7BEAE28817A8400077A5D /* MainCollectionViewCell */,
+				39B7BEB92881C0E500077A5D /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,6 +109,14 @@
 				39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */,
 			);
 			path = MainCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		39B7BEB92881C0E500077A5D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				392E0E702881C1F3005DE57C /* ViewController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		39F5D4EA287F32740037E660 = {
@@ -133,6 +149,7 @@
 				39F5D501287F32750037E660 /* LaunchScreen.storyboard */,
 				39F5D504287F32750037E660 /* Info.plist */,
 				39B7BE902880512500077A5D /* fonts */,
+				39B7BEB72881B74300077A5D /* CustomTabBar.swift */,
 			);
 			path = SimbirSoft;
 			sourceTree = "<group>";
@@ -207,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				392E0E712881C1F3005DE57C /* ViewController.xib in Resources */,
 				39B7BEA92881742D00077A5D /* MainCollectionViewCell.xib in Resources */,
 				39F5D503287F32750037E660 /* LaunchScreen.storyboard in Resources */,
 				39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */,
@@ -284,6 +302,8 @@
 			files = (
 				39F5D4FB287F32740037E660 /* ViewController.swift in Sources */,
 				39B7BEB028817F4700077A5D /* Menu.swift in Sources */,
+				39B7BEB82881B74300077A5D /* CustomTabBar.swift in Sources */,
+				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
 				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
 				39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */,

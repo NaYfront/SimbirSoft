@@ -16,11 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Помочь"
+        self.navigationItem.title = "помочь"
         
         self.mainCollectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
-        mainCollectionView.dataSource = self
-        mainCollectionView.delegate = self
     }
 }
 
