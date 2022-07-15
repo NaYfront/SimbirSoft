@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
+		39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */; };
+		39B7BEA92881742D00077A5D /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */; };
 		39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F6287F32740037E660 /* AppDelegate.swift */; };
 		39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F8287F32740037E660 /* SceneDelegate.swift */; };
 		39F5D4FB287F32740037E660 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4FA287F32740037E660 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
+		39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		39F5D4F3287F32740037E660 /* SimbirSoft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimbirSoft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F5D4F6287F32740037E660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39F5D4F8287F32740037E660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,39 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		39B7BE9F2881710600077A5D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				39F5D4FA287F32740037E660 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		39B7BEA02881711600077A5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		39B7BEA12881712700077A5D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39F5D4FC287F32740037E660 /* Main.storyboard */,
+				39B7BEAE28817A8400077A5D /* MainCollectionViewCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		39B7BEAE28817A8400077A5D /* MainCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */,
+				39B7BEA72881742D00077A5D /* MainCollectionViewCell.xib */,
+			);
+			path = MainCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		39F5D4EA287F32740037E660 = {
 			isa = PBXGroup;
 			children = (
@@ -84,14 +121,15 @@
 		39F5D4F5287F32740037E660 /* SimbirSoft */ = {
 			isa = PBXGroup;
 			children = (
-				39B7BE902880512500077A5D /* fonts */,
 				39F5D4F6287F32740037E660 /* AppDelegate.swift */,
 				39F5D4F8287F32740037E660 /* SceneDelegate.swift */,
-				39F5D4FA287F32740037E660 /* ViewController.swift */,
-				39F5D4FC287F32740037E660 /* Main.storyboard */,
+				39B7BEA12881712700077A5D /* View */,
+				39B7BEA02881711600077A5D /* Model */,
+				39B7BE9F2881710600077A5D /* Controller */,
 				39F5D4FF287F32750037E660 /* Assets.xcassets */,
 				39F5D501287F32750037E660 /* LaunchScreen.storyboard */,
 				39F5D504287F32750037E660 /* Info.plist */,
+				39B7BE902880512500077A5D /* fonts */,
 			);
 			path = SimbirSoft;
 			sourceTree = "<group>";
@@ -166,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B7BEA92881742D00077A5D /* MainCollectionViewCell.xib in Resources */,
 				39F5D503287F32750037E660 /* LaunchScreen.storyboard in Resources */,
 				39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */,
 				39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */,
@@ -242,6 +281,7 @@
 			files = (
 				39F5D4FB287F32740037E660 /* ViewController.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
+				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
 				39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,22 +21,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите категорию помощи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNX-7S-clB">
-                                <rect key="frame" x="82" y="108" width="250" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите категорию помощи" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNX-7S-clB">
+                                <rect key="frame" x="20" y="108" width="374" height="20"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oPT-lV-q72">
+                                <rect key="frame" x="10" y="145" width="394" height="717"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="nXV-uL-5ub">
+                                    <size key="itemSize" width="180" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GNX-7S-clB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1k3-Ig-Dik"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GNX-7S-clB" secondAttribute="trailing" constant="82" id="Pra-AM-hz5"/>
-                            <constraint firstItem="GNX-7S-clB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="82" id="pYa-Ae-42K"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oPT-lV-q72" secondAttribute="bottom" id="Q5w-eR-MLv"/>
+                            <constraint firstItem="oPT-lV-q72" firstAttribute="top" secondItem="GNX-7S-clB" secondAttribute="bottom" constant="17" id="bh8-bY-dOU"/>
+                            <constraint firstItem="oPT-lV-q72" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ipb-lV-JFq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oPT-lV-q72" secondAttribute="trailing" constant="10" id="jdI-4L-JJq"/>
+                            <constraint firstItem="GNX-7S-clB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="s86-Ra-tZm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GNX-7S-clB" secondAttribute="trailing" constant="20" id="vYz-tg-2dn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xku-mT-XkY"/>
+                    <connections>
+                        <outlet property="mainCollectionView" destination="oPT-lV-q72" id="BCJ-rz-pLF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,7 +63,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ztr-Sa-kRC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oqg-8J-hOE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kiH-JA-Igk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tTf-hE-N7l">
@@ -57,6 +74,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="RAz-p6-ciC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oqg-8J-hOE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-342" y="98"/>
         </scene>
