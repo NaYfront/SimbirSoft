@@ -15,8 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let standard = UINavigationBarAppearance()
         standard.configureWithOpaqueBackground()
 
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = 50
+        
         standard.backgroundColor = UIColor(named: "leaf") ?? .purple
-        standard.titleTextAttributes = [.font: UIFont(name: "OfficinaSansExtraBoldSCC", size: 30) ?? UIFont(), .foregroundColor: UIColor.white]
+        standard.titleTextAttributes = [.font: UIFont(name: "OfficinaSansExtraBoldSCC", size: 30) ?? UIFont(), .foregroundColor: UIColor.white, .paragraphStyle: paragraphStyle]
 
         UINavigationBar.appearance().standardAppearance = standard
         UINavigationBar.appearance().compactAppearance = standard
