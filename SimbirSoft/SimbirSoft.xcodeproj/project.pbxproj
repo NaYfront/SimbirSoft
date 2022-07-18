@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		392E0E712881C1F3005DE57C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392E0E702881C1F3005DE57C /* ViewController.xib */; };
+		3992D7E5288572F100913BD1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3992D7E4288572F100913BD1 /* Enums.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
 		39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		392E0E702881C1F3005DE57C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		3992D7E4288572F100913BD1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
 		39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +66,14 @@
 				7EB8F69D8AC7A51CEB31E209 /* Pods_SimbirSoft.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3992D7E3288572DE00913BD1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				3992D7E4288572F100913BD1 /* Enums.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		39B7BE902880512500077A5D /* fonts */ = {
@@ -148,6 +158,7 @@
 				39F5D4FF287F32750037E660 /* Assets.xcassets */,
 				39F5D501287F32750037E660 /* LaunchScreen.storyboard */,
 				39F5D504287F32750037E660 /* Info.plist */,
+				3992D7E3288572DE00913BD1 /* Enums */,
 				39B7BE902880512500077A5D /* fonts */,
 				39B7BEB72881B74300077A5D /* CustomTabBar.swift */,
 			);
@@ -170,8 +181,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39F5D507287F32750037E660 /* Build configuration list for PBXNativeTarget "SimbirSoft" */;
 			buildPhases = (
-				39B7BE8F28802E1400077A5D /* ShellScript */,
 				F7C664A24500C2D3A5D6B156 /* [CP] Check Pods Manifest.lock */,
+				39B7BE8F28802E1400077A5D /* ShellScript */,
 				39F5D4EF287F32740037E660 /* Sources */,
 				39F5D4F0287F32740037E660 /* Frameworks */,
 				39F5D4F1287F32740037E660 /* Resources */,
@@ -306,6 +317,7 @@
 				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
 				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
+				3992D7E5288572F100913BD1 /* Enums.swift in Sources */,
 				39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

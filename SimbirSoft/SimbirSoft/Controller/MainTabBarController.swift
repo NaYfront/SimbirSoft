@@ -8,16 +8,10 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
-    private let middleButtonDiameter: CGFloat = 42
-
-    private let redColor: UIColor = UIColor(red: 254.0 / 255.0, green: 116.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
-    private let greenColor: UIColor = UIColor(red: 102.0 / 255.0, green: 166.0 / 255.0, blue: 54.0 / 255.0, alpha: 1.0)
-
     private lazy var middleButton: UIButton = {
         let middleButton = UIButton()
-        middleButton.layer.cornerRadius = middleButtonDiameter / 2
-        middleButton.backgroundColor = UIColor(named: "leaf")
+        middleButton.layer.cornerRadius = .middleButtonDiameter / 2
+        middleButton.backgroundColor = CustomColor.leaf
         middleButton.translatesAutoresizingMaskIntoConstraints = false
         
         middleButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
@@ -39,14 +33,14 @@ class MainTabBarController: UITabBarController {
         makeUI()
     }
     
-    private func makeUI() {
+    func makeUI() {
         
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
 
         NSLayoutConstraint.activate([
-            middleButton.heightAnchor.constraint(equalToConstant: middleButtonDiameter),
-            middleButton.widthAnchor.constraint(equalToConstant: middleButtonDiameter),
+            middleButton.heightAnchor.constraint(equalToConstant: .middleButtonDiameter),
+            middleButton.widthAnchor.constraint(equalToConstant: .middleButtonDiameter),
             
             middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
@@ -70,7 +64,7 @@ class MainTabBarController: UITabBarController {
 
         let middleVC = UINavigationController(rootViewController: ViewController())
         middleVC.tabBarItem.title = "Помочь"
-        middleVC.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor(named: "leaf") ?? .white], for: .selected)
+        middleVC.tabBarItem.setTitleTextAttributes([.foregroundColor: CustomColor.leaf], for: .selected)
 
         let fourthVC = UIViewController()
         fourthVC.tabBarItem.title = "История"
@@ -88,7 +82,7 @@ class MainTabBarController: UITabBarController {
     @objc
     private func didPressMiddleButton() {
         selectedIndex = 2
-        middleButton.backgroundColor = greenColor
+        middleButton.backgroundColor = CustomColor.leaf
     }
 }
 
@@ -96,9 +90,13 @@ extension MainTabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let selectedIndex = self.tabBar.items?.firstIndex(of: item)
         if selectedIndex != 2 {
-            middleButton.backgroundColor = redColor
+            middleButton.backgroundColor = .gray
         } else {
-            middleButton.backgroundColor = greenColor
+            middleButton.backgroundColor = CustomColor.leaf
         }
     }
+}
+
+private extension CGFloat {
+    static let middleButtonDiameter: CGFloat = 42
 }
