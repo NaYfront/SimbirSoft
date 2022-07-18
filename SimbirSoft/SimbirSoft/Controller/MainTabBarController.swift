@@ -35,6 +35,8 @@ class MainTabBarController: UITabBarController {
     
     func makeUI() {
         
+        tabBar.tintColor = CustomColor.leaf
+        
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
 
