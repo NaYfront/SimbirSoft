@@ -44,11 +44,11 @@ class ViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.left.right.equalToSuperview().inset(20)
         }
-        
+                
         view.addSubview(mainCollectionView)
         mainCollectionView.snp.makeConstraints { make in
             make.top.equalTo(label).inset(40) // Поменять здесь
-            make.left.right.equalToSuperview().inset(10)
+            make.left.right.equalToSuperview().inset(Int(.interitemSpacing))
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -76,10 +76,42 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.label.attributedText = toAttributedString(text: menu.categories[indexPath.row].name)
         cell.imageView.image = menu.categories[indexPath.row].image
         
+        let image = menu.categories[indexPath.row].image
+        cell.imageView.snp.makeConstraints { make in
+            guard let image = image else { return }
+            
+            make.width.equalTo(image.size.width / 3)
+            make.width.height.equalTo(image.size.height / 3)
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 160)
+        return .cellSize
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .interitemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .interitemSpacing
+    }
+}
+
+private extension CGSize {
+    static let cellSize = { () -> CGSize in 
+        if UIScreen.main.bounds.width < 375 {
+            return smallCellSize
+        } else {
+            return CGSize(width: 174, height: 160)
+        }
+    }()
+    
+    static let smallCellSize: CGSize = CGSize(width: 151, height: 139)
+}
+
+private extension CGFloat {
+    static let interitemSpacing: CGFloat = (UIScreen.main.bounds.width - CGSize.cellSize.width * 2) / 3
 }

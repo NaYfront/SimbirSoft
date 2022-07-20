@@ -45,18 +45,16 @@ class MainCollectionViewCell: UICollectionViewCell {
     private func configure() {
         contentView.backgroundColor = CustomColor.lightGrey
         
-        contentView.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.left.equalTo(contentView.snp.left).offset(30)
-            make.centerY.equalTo(self.contentView)
-            make.centerX.equalTo(self.contentView)
-            make.width.height.equalTo(100)
-        }
-        
         contentView.addSubview(label)
         label.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(8)
-            make.bottom.equalToSuperview().inset(3)
+            make.bottom.equalToSuperview().inset(10)
+        }
+        
+        contentView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.left.equalTo(contentView.snp.left).inset(30)
+            make.center.equalTo(self.contentView.snp.center)
         }
     }
 }
