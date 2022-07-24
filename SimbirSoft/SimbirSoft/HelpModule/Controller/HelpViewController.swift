@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class ViewController: UIViewController {
+class HelpViewController: UIViewController {
     let menu = Menu()
     
     private let mainCollectionView = UICollectionView(
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Выберите категорию помощи"
-        label.font = CustomFont.sfuitext.chooseSize(size: 17)
+        label.font = .sfuitext(size: 17)
         label.textAlignment = .center
         return label
     }()
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
                 
         view.addSubview(mainCollectionView)
         mainCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(label).inset(40) // Поменять здесь
+            make.top.equalTo(label).inset(40)
             make.left.right.equalToSuperview().inset(Int(.interitemSpacing))
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -58,14 +58,14 @@ class ViewController: UIViewController {
         paragraphStyle.minimumLineHeight = 20
         paragraphStyle.alignment = .center
         
-        let myAttribute = [NSAttributedString.Key.font: CustomFont.officina.chooseSize(size: 17), NSAttributedString.Key.foregroundColor: CustomColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 17), NSAttributedString.Key.foregroundColor: UIColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
         let attributedString = NSAttributedString(string: text, attributes: myAttribute)
         
         return NSAttributedString(attributedString: attributedString)
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menu.categories.count
     }

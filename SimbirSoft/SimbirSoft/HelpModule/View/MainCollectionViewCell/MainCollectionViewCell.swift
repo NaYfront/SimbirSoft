@@ -24,7 +24,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         paragraphStyle.minimumLineHeight = 20
         paragraphStyle.alignment = .center
         
-        let myAttribute = [NSAttributedString.Key.font: CustomFont.officina.chooseSize(size: 17), NSAttributedString.Key.foregroundColor: CustomColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 17), NSAttributedString.Key.foregroundColor: UIColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
         let attributedString = NSAttributedString(string: "", attributes: myAttribute)
         
         label.attributedText = attributedString
@@ -43,7 +43,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
     
     private func configure() {
-        contentView.backgroundColor = CustomColor.lightGrey
+        contentView.backgroundColor = .lightGrey
         
         contentView.addSubview(label)
         label.snp.makeConstraints { make in
