@@ -5,7 +5,7 @@ import PlaygroundSupport
 let a = 5.2
 let b = 84.16
 
-let average = (a + b) / 2
+var average = (a + b) / 2
 
 // MARK: - 2
 let tuple = (firstName: "John", lastName: "Swift")
@@ -13,8 +13,8 @@ let tuple = (firstName: "John", lastName: "Swift")
 print("Full name: \(tuple.firstName) \(tuple.lastName)")
 
 // MARK: - 3
-let firstNumber: Float? = 762.16
-let secondNumber: Float? = nil
+var firstNumber: Float? = 762.16
+var secondNumber: Float? = nil
 
 func checkNumber(number: Float?) {
     guard let number = number else {
@@ -26,7 +26,7 @@ func checkNumber(number: Float?) {
 checkNumber(number: firstNumber)
 checkNumber(number: secondNumber)
 
-// MARK: - 4
+// MARK: - 4 // Тут можно придумать более оптимальное решение
 func fibonacci(amountOfNumbers: Int) {
     if amountOfNumbers == 0 {
         print("No numbers")
@@ -51,7 +51,7 @@ func fibonacci(amountOfNumbers: Int) {
 
 fibonacci(amountOfNumbers: 15)
 
-// MARK: - 5
+// MARK: - 5 // В целом норм, но можно еще оптимизировать
 
 func bubbleSort(numbers: [Int]) -> [Int] {
     var sortedNumbers = numbers
@@ -82,7 +82,7 @@ print(bubbleSort(numbers: numbers))
 func changeString(string: String) -> String {
     var newString = ""
     
-    for i in 0..<string.count {
+    for i in 0..<string.count { // тут можно оптимизировать,
         if string[string.index(string.startIndex, offsetBy: i)].isNumber {
             let firsNumberIndex = string.index(string.startIndex, offsetBy: i)
             

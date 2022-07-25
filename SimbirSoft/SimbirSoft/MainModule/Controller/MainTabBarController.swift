@@ -11,7 +11,7 @@ class MainTabBarController: UITabBarController {
     private lazy var middleButton: UIButton = {
         let middleButton = UIButton()
         middleButton.layer.cornerRadius = .middleButtonDiameter / 2
-        middleButton.backgroundColor = CustomColor.leaf
+        middleButton.backgroundColor = .leaf
         middleButton.translatesAutoresizingMaskIntoConstraints = false
         
         middleButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
@@ -31,12 +31,13 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         makeUI()
+        configure()
     }
     
     func makeUI() {
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
 
-        tabBar.tintColor = CustomColor.leaf
+        tabBar.tintColor = .leaf
 
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
@@ -56,7 +57,9 @@ class MainTabBarController: UITabBarController {
             heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
         ])
-        
+    }
+    
+    func configure() {
         let firstVC = UIViewController()
         firstVC.tabBarItem.title = "Новости"
         firstVC.tabBarItem.image = UIImage(systemName: "list.bullet")
@@ -65,9 +68,9 @@ class MainTabBarController: UITabBarController {
         secondVC.tabBarItem.title = "Поиск"
         secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
-        let middleVC = UINavigationController(rootViewController: ViewController())
+        let middleVC = UINavigationController(rootViewController: HelpViewController())
         middleVC.tabBarItem.title = "Помочь"
-        middleVC.tabBarItem.setTitleTextAttributes([.foregroundColor: CustomColor.leaf], for: .selected)
+        middleVC.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.leaf], for: .selected)
 
         let fourthVC = UIViewController()
         fourthVC.tabBarItem.title = "История"
@@ -85,7 +88,7 @@ class MainTabBarController: UITabBarController {
     @objc
     private func didPressMiddleButton() {
         selectedIndex = 2
-        middleButton.backgroundColor = CustomColor.leaf
+        middleButton.backgroundColor = .leaf
     }
 }
 
@@ -95,7 +98,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
         if selectedIndex != 2 {
             middleButton.backgroundColor = .gray
         } else {
-            middleButton.backgroundColor = CustomColor.leaf
+            middleButton.backgroundColor = .leaf
         }
     }
 }

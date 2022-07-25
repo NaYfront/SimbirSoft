@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 50
         
-        standard.backgroundColor = CustomColor.leaf
-        standard.titleTextAttributes = [.font: CustomFont.officina.chooseSize(size: 30), .foregroundColor: UIColor.white, .paragraphStyle: paragraphStyle]
+        standard.backgroundColor = .leaf
+        standard.titleTextAttributes = [.font: UIFont.officina(size: 21), .foregroundColor: UIColor.white, .paragraphStyle: paragraphStyle]
 
         UINavigationBar.appearance().standardAppearance = standard
         UINavigationBar.appearance().compactAppearance = standard

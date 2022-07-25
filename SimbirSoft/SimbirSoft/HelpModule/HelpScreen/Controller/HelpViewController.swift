@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 class HelpViewController: UIViewController {
-    let menu = Menu()
+    let menu = CategoriesMenu()
     
     private let mainCollectionView = UICollectionView(
         frame: .zero,
@@ -19,7 +19,7 @@ class HelpViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Выберите категорию помощи"
-        label.font = .sfuitext(size: 17)
+        label.font = .sfuitextRegular(size: 17)
         label.textAlignment = .center
         return label
     }()
@@ -97,6 +97,13 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return .interitemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let eventsVC = EventsViewController()
+        eventsVC.navigationItem.title = menu.categories[indexPath.row].name
+        
+        self.navigationController?.pushViewController(eventsVC, animated: true)
     }
 }
 

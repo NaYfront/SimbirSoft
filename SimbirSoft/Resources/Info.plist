@@ -6,6 +6,7 @@
 	<array>
 		<string>sf-ui-text-regular.ttf</string>
 		<string>Officinasansextraboldscc.otf</string>
+		<string>sf-ui-text-medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
