@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainCollectionViewCell: UICollectionViewCell {
     static let identifier = "MainCollectionViewCell"
@@ -19,16 +20,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     let label: UILabel = {
         let label = UILabel()
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 20
-        paragraphStyle.alignment = .center
-        
-        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 17), NSAttributedString.Key.foregroundColor: UIColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: "", attributes: myAttribute)
-        
-        label.attributedText = attributedString
-        
         return label
     }()
     

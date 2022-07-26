@@ -17,8 +17,8 @@
 		39C2989A288D89F50065CCAA /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C29899288D89F50065CCAA /* UIFontExtension.swift */; };
 		39C298A7288DE0EF0065CCAA /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C298A6288DE0EF0065CCAA /* EventsViewController.swift */; };
 		39C298A9288DE67D0065CCAA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C298A8288DE67D0065CCAA /* Event.swift */; };
-		39C298AB288DE8E10065CCAA /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C298AA288DE8E10065CCAA /* UIImageExtension.swift */; };
 		39C298AF288E9BA30065CCAA /* sf-ui-text-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39C298AE288E9BA30065CCAA /* sf-ui-text-medium.ttf */; };
+		39C298B1288EAC290065CCAA /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C298B0288EAC290065CCAA /* EventCollectionViewCell.swift */; };
 		39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F6287F32740037E660 /* AppDelegate.swift */; };
 		39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4F8287F32740037E660 /* SceneDelegate.swift */; };
 		39F5D4FB287F32740037E660 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5D4FA287F32740037E660 /* HelpViewController.swift */; };
@@ -38,8 +38,8 @@
 		39C29899288D89F50065CCAA /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		39C298A6288DE0EF0065CCAA /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		39C298A8288DE67D0065CCAA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		39C298AA288DE8E10065CCAA /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		39C298AE288E9BA30065CCAA /* sf-ui-text-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-medium.ttf"; sourceTree = "<group>"; };
+		39C298B0288EAC290065CCAA /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		39F5D4F3287F32740037E660 /* SimbirSoft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimbirSoft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F5D4F6287F32740037E660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39F5D4F8287F32740037E660 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +139,6 @@
 			children = (
 				39C29897288D890E0065CCAA /* UIColorExtension.swift */,
 				39C29899288D89F50065CCAA /* UIFontExtension.swift */,
-				39C298AA288DE8E10065CCAA /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -208,6 +207,7 @@
 		39C298A4288DB9810065CCAA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				39C298B0288EAC290065CCAA /* EventCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -404,9 +404,9 @@
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
 				39C2989A288D89F50065CCAA /* UIFontExtension.swift in Sources */,
 				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
+				39C298B1288EAC290065CCAA /* EventCollectionViewCell.swift in Sources */,
 				39F5D4F9287F32740037E660 /* SceneDelegate.swift in Sources */,
 				39C298A7288DE0EF0065CCAA /* EventsViewController.swift in Sources */,
-				39C298AB288DE8E10065CCAA /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

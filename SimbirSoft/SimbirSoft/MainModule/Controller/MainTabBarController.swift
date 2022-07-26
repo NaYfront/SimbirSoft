@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
         configure()
     }
     
-    func makeUI() {
+    private func makeUI() {
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
 
         tabBar.tintColor = .leaf
@@ -59,7 +59,7 @@ class MainTabBarController: UITabBarController {
         ])
     }
     
-    func configure() {
+    private func configure() {
         let firstVC = UIViewController()
         firstVC.tabBarItem.title = "Новости"
         firstVC.tabBarItem.image = UIImage(systemName: "list.bullet")

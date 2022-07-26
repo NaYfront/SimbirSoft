@@ -27,14 +27,11 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainCollectionView.delegate = self
-        mainCollectionView.dataSource = self
-        mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
-        
         configure()
+        makeUI()
     }
     
-    private func configure() {
+    private func makeUI() {
         view.backgroundColor = .white
         
         self.navigationItem.title = "Помочь"
@@ -51,6 +48,12 @@ class HelpViewController: UIViewController {
             make.left.right.equalToSuperview().inset(Int(.interitemSpacing))
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func configure() {
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
+        mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
     }
     
     private func toAttributedString(text: String) -> NSAttributedString {
@@ -101,6 +104,7 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let eventsVC = EventsViewController()
+        eventsVC.events = menu.categories[indexPath.row].events
         eventsVC.navigationItem.title = menu.categories[indexPath.row].name
         
         self.navigationController?.pushViewController(eventsVC, animated: true)
