@@ -11,6 +11,8 @@ import SnapKit
 class EventCollectionViewCell: UICollectionViewCell {
     static let identifier = "EventCollectionViewCell"
     
+    let imageWidth = UIScreen.main.bounds.width - 24
+    
     lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -76,14 +78,10 @@ class EventCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution  = .fill
-        stackView.alignment = .fill
-        stackView.spacing   = 10
+    lazy var emptyView: UIView = {
+        let view = UIView()
         
-        return stackView
+        return view
     }()
     
     lazy var dateImageView: UIImageView = {
@@ -123,12 +121,12 @@ class EventCollectionViewCell: UICollectionViewCell {
     private func configure() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 5
-        
+
         contentView.addSubview(mainImageView)
         mainImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview().inset(4)
             make.height.equalTo(231)
-            make.width.equalTo(351)
+            make.width.equalTo(imageWidth)
         }
         
         mainImageView.addSubview(additionalImageView)
@@ -139,7 +137,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(mainImageView.snp.bottom).inset(8)
-            make.left.right.equalToSuperview().inset(46)
+            make.left.right.equalToSuperview()
         }
         
         contentView.addSubview(heartImageView)
@@ -161,21 +159,21 @@ class EventCollectionViewCell: UICollectionViewCell {
             make.left.bottom.right.equalToSuperview()
         }
         
-        greenView.addSubview(stackView)
+        greenView.addSubview(emptyView)
         
-        stackView.addSubview(dateImageView)
+        emptyView.addSubview(dateImageView)
         dateImageView.snp.makeConstraints { make in
             make.height.equalTo(15)
             make.width.equalTo(15)
         }
 
-        stackView.addSubview(dateLabel)
+        emptyView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
             make.height.equalTo(15)
             make.left.equalTo(dateImageView.snp.right).offset(10)
         }
         
-        stackView.snp.makeConstraints { make in
+        emptyView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(13)
             make.width.equalTo(dateLabel.snp.width).offset(25)
