@@ -42,6 +42,10 @@ class EventsViewController: UIViewController {
     }
     
     private func configure() {
+        let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
+        filterButton.tintColor = .white
+        navigationItem.rightBarButtonItem = filterButton
+        
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self
         eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.identifier)

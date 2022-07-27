@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let standard = UINavigationBarAppearance()
         standard.configureWithOpaqueBackground()
+        
+        standard.setBackIndicatorImage(#imageLiteral(resourceName: "backButton"), transitionMaskImage: #imageLiteral(resourceName: "backButton"))
+        
+        let barAppearance = UINavigationBar.appearance()
+        barAppearance.tintColor = .white
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 50
