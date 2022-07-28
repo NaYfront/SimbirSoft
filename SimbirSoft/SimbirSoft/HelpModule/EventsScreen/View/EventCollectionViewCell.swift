@@ -11,8 +11,6 @@ import SnapKit
 class EventCollectionViewCell: UICollectionViewCell {
     static let identifier = "EventCollectionViewCell"
     
-    let imageWidth = UIScreen.main.bounds.width - 24
-    
     lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -125,8 +123,8 @@ class EventCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(mainImageView)
         mainImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview().inset(4)
-            make.height.equalTo(231)
-            make.width.equalTo(imageWidth)
+            make.height.equalTo(CGFloat.mainImageHeight)
+            make.width.equalTo(CGFloat.mainImageWidth)
         }
         
         mainImageView.addSubview(additionalImageView)
@@ -163,20 +161,28 @@ class EventCollectionViewCell: UICollectionViewCell {
         
         emptyView.addSubview(dateImageView)
         dateImageView.snp.makeConstraints { make in
-            make.height.equalTo(15)
-            make.width.equalTo(15)
+            make.height.equalTo(CGFloat.dateImageHeight)
+            make.width.equalTo(CGFloat.dateImageWidth)
         }
 
         emptyView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
-            make.height.equalTo(15)
+            make.height.equalTo(13)
             make.left.equalTo(dateImageView.snp.right).offset(10)
         }
         
         emptyView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(13)
-            make.width.equalTo(dateLabel.snp.width).offset(25)
+            make.width.equalTo(dateLabel.snp.width).offset(CGFloat.dateImageWidth).offset(10)
         }
     }
+}
+
+private extension CGFloat {
+    static let mainImageWidth = UIScreen.main.bounds.width - 24
+    static let mainImageHeight = 231
+    
+    static let dateImageWidth = 14
+    static let dateImageHeight = 13
 }

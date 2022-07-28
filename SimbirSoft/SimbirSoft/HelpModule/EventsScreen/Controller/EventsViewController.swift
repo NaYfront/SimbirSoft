@@ -42,16 +42,16 @@ class EventsViewController: UIViewController {
     }
     
     private func configure() {
-        let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
-        filterButton.tintColor = .white
-        navigationItem.rightBarButtonItem = filterButton
-        
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self
         eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.identifier)
     }
     
     private func makeUI() {
+        let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
+        filterButton.tintColor = .white
+        navigationItem.rightBarButtonItem = filterButton
+        
         view.backgroundColor = .white
         eventsCollectionView.backgroundColor = .lightGrey
         eventsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
@@ -103,6 +103,12 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = DetailViewController(event: events[indexPath.row])
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

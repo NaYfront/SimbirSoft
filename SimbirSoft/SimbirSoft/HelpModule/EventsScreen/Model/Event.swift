@@ -13,4 +13,9 @@ struct Event {
     var name: String
     var description: String
     var date: String
+    var company: String
+    var address: String
+    var phoneNumber: String
+    var detailImages: [UIImage]
+    var detailDescription: String
 }

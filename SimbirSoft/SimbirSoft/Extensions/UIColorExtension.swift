@@ -24,4 +24,10 @@ extension UIColor {
     static var darkSlateBlue: UIColor {
         #colorLiteral(red: 0.0862745098, green: 0.231372549, blue: 0.3098039216, alpha: 1)
     }
+    static var grey: UIColor {
+        #colorLiteral(red: 0.6470588235, green: 0.662745098, blue: 0.6117647059, alpha: 1)
+    }
+    static var charcoalGrey: UIColor {
+        #colorLiteral(red: 0.3577872515, green: 0.3620481491, blue: 0.3621371686, alpha: 1)
+    }
 }
