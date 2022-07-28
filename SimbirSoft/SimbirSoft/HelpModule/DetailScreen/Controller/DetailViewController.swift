@@ -12,25 +12,14 @@ class DetailViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 25
-        paragraphStyle.alignment = .left
-        
-        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 21), NSAttributedString.Key.foregroundColor: UIColor.blueGrey, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: event.name, attributes: myAttribute)
-        
-        label.attributedText = NSAttributedString(attributedString: attributedString)
+        label.attributedText = toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .left, minimumLineHeight: 25, text: event.name)
         
         return label
     }()
     
-    private lazy var dateView: UIView = {
-        let view = UIView()
-        
-        return view
-    }()
+    private lazy var dateView = UIView()
     
     private lazy var dateImageView: UIImageView = {
         let imageView = UIImageView()
@@ -45,14 +34,8 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-
-        let myAttribute = [NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 11), NSAttributedString.Key.foregroundColor: UIColor.grey, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: event.date, attributes: myAttribute)
-
-        label.attributedText = NSAttributedString(attributedString: attributedString)
-
+        label.attributedText = toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .grey, textAlignment: .center, minimumLineHeight: nil, text: event.date)
+        
         return label
     }()
     
@@ -60,14 +43,84 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
+        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 11), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: 20, text: event.company)
+        
+        return label
+    }()
+    
+    private lazy var addressView = UIView()
+    
+    private lazy var addressImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "iconNav")
+        
+        return imageView
+    }()
+    
+    private lazy var addressLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+
+        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.address)
+        
+        return label
+    }()
+    
+    private lazy var phoneView = UIView()
+    
+    private lazy var phoneImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "iconPhone")
+        
+        return imageView
+    }()
+    
+    private lazy var phoneLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+
+        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.phoneNumber)
+
+        return label
+    }()
+    
+    private lazy var mailView = UIView()
+    
+    private lazy var mailImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "mail")
+        
+        return imageView
+    }()
+    
+    private lazy var mailFirstLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+
+        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: "У вас есть вопросы?")
+        
+        return label
+    }()
+    
+    private lazy var mailSecondLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
 
-        let myAttribute = [NSAttributedString.Key.font: UIFont.sfuitextRegular(size: 11), NSAttributedString.Key.foregroundColor: UIColor.charcoalGrey, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: event.company, attributes: myAttribute)
+        let myAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.sfuitextRegular(size: 15), NSAttributedString.Key.foregroundColor: UIColor.leaf, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
+        
+        let attributedString = NSAttributedString(string: "Напишите нам", attributes: myAttribute)
 
-        label.attributedText = NSAttributedString(attributedString: attributedString)
-
+        label.attributedText = attributedString
+        
         return label
     }()
     
@@ -87,25 +140,78 @@ class DetailViewController: UIViewController {
         makeUI()
     }
     
+    private func toAttributedString(font: UIFont, foregroundColor: UIColor, textAlignment: NSTextAlignment, minimumLineHeight: CGFloat?, text: String) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = textAlignment
+        
+        if let minimumLineHeight = minimumLineHeight {
+            paragraphStyle.minimumLineHeight = minimumLineHeight
+        }
+
+        let myAttribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: foregroundColor, NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        
+        let attributedString = NSAttributedString(string: text, attributes: myAttribute)
+        
+        return attributedString
+    }
+    
     private func makeUI() {
         view.backgroundColor = .white
         
-        view.addSubview(nameLabel)
+        addSubviews()
+        
         nameLabel.snp.makeConstraints { make in
             make.top.left.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.right.equalTo(view.safeAreaLayoutGuide).inset(68)
         }
         
+        configureDatePart()
+        
+        companyLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateView.snp.bottom).offset(10)
+            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        configureAddressPart()
+        configurePhonePart()
+        configureMailPart()
+        
+    }
+    
+    private func addSubviews() {
+        view.addSubview(nameLabel)
         view.addSubview(dateView)
         
         dateView.addSubview(dateImageView)
+        dateView.addSubview(dateLabel)
+        
+        view.addSubview(companyLabel)
+        view.addSubview(addressView)
+        
+        addressView.addSubview(addressImageView)
+        addressView.addSubview(addressLabel)
+        
+        view.addSubview(phoneView)
+        
+        phoneView.addSubview(phoneImageView)
+        phoneView.addSubview(phoneLabel)
+        
+        view.addSubview(mailView)
+        
+        mailView.addSubview(mailImageView)
+        mailView.addSubview(mailFirstLabel)
+        mailView.addSubview(mailSecondLabel)
+    }
+    
+    private func configureDatePart() {
         dateImageView.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview()
             make.height.equalTo(13)
             make.width.equalTo(14)
         }
 
-        dateView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
             make.height.equalTo(13)
             make.left.equalTo(dateImageView.snp.right).offset(10)
         }
@@ -115,6 +221,75 @@ class DetailViewController: UIViewController {
             make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(dateLabel.snp.height)
             make.width.equalTo(dateLabel.snp.width).offset(24)
+        }
+    }
+    
+    private func configureAddressPart() {
+        addressImageView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(3)
+            make.height.width.equalTo(16)
+        }
+
+        addressLabel.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
+            make.left.equalTo(addressImageView.snp.right).offset(10)
+        }
+
+        addressView.snp.makeConstraints { make in
+            make.top.equalTo(companyLabel.snp.bottom).offset(15)
+            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
+            make.height.equalTo(addressLabel.snp.height)
+            make.width.equalTo(addressLabel.snp.width).offset(26)
+        }
+    }
+    
+    private func configurePhonePart() {
+        phoneImageView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(3)
+            make.height.width.equalTo(16)
+        }
+
+        phoneLabel.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
+            make.left.equalTo(phoneImageView.snp.right).offset(10)
+        }
+
+        phoneView.snp.makeConstraints { make in
+            make.top.equalTo(addressView.snp.bottom).offset(15)
+            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
+            make.height.equalTo(phoneLabel.snp.height)
+            make.width.equalTo(phoneLabel.snp.width).offset(26)
+        }
+    }
+    
+    private func configureMailPart() {
+        mailImageView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(4)
+            make.height.equalTo(12)
+            make.width.equalTo(18)
+        }
+
+        mailFirstLabel.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.width.equalTo(152)
+            make.left.equalTo(mailImageView.snp.right).offset(9)
+        }
+        
+        mailSecondLabel.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
+            make.left.equalTo(mailFirstLabel.snp.right).offset(1)
+        }
+
+        mailView.snp.makeConstraints { make in
+            make.top.equalTo(phoneView.snp.bottom).offset(15)
+            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
+            make.height.equalTo(mailFirstLabel.snp.height)
         }
     }
 }

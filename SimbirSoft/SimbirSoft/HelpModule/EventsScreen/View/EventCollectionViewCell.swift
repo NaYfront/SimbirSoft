@@ -76,11 +76,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var emptyView: UIView = {
-        let view = UIView()
-        
-        return view
-    }()
+    lazy var emptyView = UIView()
     
     lazy var dateImageView: UIImageView = {
         let imageView = UIImageView()
@@ -161,12 +157,14 @@ class EventCollectionViewCell: UICollectionViewCell {
         
         emptyView.addSubview(dateImageView)
         dateImageView.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview()
             make.height.equalTo(CGFloat.dateImageHeight)
             make.width.equalTo(CGFloat.dateImageWidth)
         }
 
         emptyView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
             make.height.equalTo(13)
             make.left.equalTo(dateImageView.snp.right).offset(10)
         }
