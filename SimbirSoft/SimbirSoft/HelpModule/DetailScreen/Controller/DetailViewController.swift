@@ -10,6 +10,18 @@ import UIKit
 class DetailViewController: UIViewController {
     let event: Event
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.bounces = true
+        scrollView.contentSize = self.view.frame.size
+        
+        return scrollView
+    }()
+    
+    private lazy var containerView = UIView()
+    
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -124,6 +136,46 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    private lazy var imageSetView = UIView()
+    
+    private lazy var imageFirst: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "detail1")
+        
+        return imageView
+    }()
+    
+    private lazy var smallImageSetView = UIView()
+    
+    private lazy var imageSecond: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "detail3")
+        
+        return imageView
+    }()
+    
+    private lazy var imageThird: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = #imageLiteral(resourceName: "detail2")
+        
+        return imageView
+    }()
+    
+    private lazy var detailDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.detailDescription)
+        
+        return label
+    }()
+    
     init(event: Event) {
         self.event = event
         
@@ -145,47 +197,76 @@ class DetailViewController: UIViewController {
         
         addSubviews()
         
+        scrollView.snp.makeConstraints { make in
+            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view).offset(-20)
+        }
+        
+        containerView.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(scrollView)
+            make.left.right.equalTo(view)
+        }
+        
         nameLabel.snp.makeConstraints { make in
-            make.top.left.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(68)
+            make.top.left.equalToSuperview().inset(20)
+            make.right.equalToSuperview().inset(68)
         }
         
         configureDatePart()
         
         companyLabel.snp.makeConstraints { make in
             make.top.equalTo(dateView.snp.bottom).offset(10)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.left.equalToSuperview().inset(20)
         }
         
         configureAddressPart()
         configurePhonePart()
         configureMailPart()
+        configureImageSetPart()
         
+        detailDescriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageSetView.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(20)
+            make.bottom.equalTo(containerView)
+        }
     }
     
     private func addSubviews() {
-        view.addSubview(nameLabel)
-        view.addSubview(dateView)
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(containerView)
+        
+        containerView.addSubview(nameLabel)
+        containerView.addSubview(dateView)
         
         dateView.addSubview(dateImageView)
         dateView.addSubview(dateLabel)
         
-        view.addSubview(companyLabel)
-        view.addSubview(addressView)
+        containerView.addSubview(companyLabel)
+        containerView.addSubview(addressView)
         
         addressView.addSubview(addressImageView)
         addressView.addSubview(addressLabel)
         
-        view.addSubview(phoneView)
+        containerView.addSubview(phoneView)
         
         phoneView.addSubview(phoneImageView)
         phoneView.addSubview(phoneLabel)
         
-        view.addSubview(mailView)
+        containerView.addSubview(mailView)
         
         mailView.addSubview(mailImageView)
         mailView.addSubview(mailFirstLabel)
         mailView.addSubview(mailSecondLabel)
+        
+        containerView.addSubview(imageSetView)
+        
+        imageSetView.addSubview(imageFirst)
+        imageSetView.addSubview(smallImageSetView)
+        smallImageSetView.addSubview(imageSecond)
+        smallImageSetView.addSubview(imageThird)
+        
+        containerView.addSubview(detailDescriptionLabel)
     }
     
     private func configureDatePart() {
@@ -203,9 +284,9 @@ class DetailViewController: UIViewController {
         
         dateView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(17)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(dateLabel.snp.height)
-            make.width.equalTo(dateLabel.snp.width).offset(24)
+            make.left.equalToSuperview().inset(20)
+            make.height.equalTo(dateLabel)
+            make.width.equalTo(dateLabel).offset(24)
         }
     }
     
@@ -223,10 +304,10 @@ class DetailViewController: UIViewController {
 
         addressView.snp.makeConstraints { make in
             make.top.equalTo(companyLabel.snp.bottom).offset(15)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
-            make.height.equalTo(addressLabel.snp.height)
-            make.width.equalTo(addressLabel.snp.width).offset(26)
+            make.left.equalToSuperview().inset(20)
+            make.right.equalToSuperview().inset(60)
+            make.height.equalTo(addressLabel)
+            make.width.equalTo(addressLabel).offset(26)
         }
     }
     
@@ -244,10 +325,10 @@ class DetailViewController: UIViewController {
 
         phoneView.snp.makeConstraints { make in
             make.top.equalTo(addressView.snp.bottom).offset(15)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
-            make.height.equalTo(phoneLabel.snp.height)
-            make.width.equalTo(phoneLabel.snp.width).offset(26)
+            make.left.equalToSuperview().inset(20)
+            make.right.equalToSuperview().inset(60)
+            make.height.equalTo(phoneLabel)
+            make.width.equalTo(phoneLabel).offset(26)
         }
     }
     
@@ -272,9 +353,40 @@ class DetailViewController: UIViewController {
 
         mailView.snp.makeConstraints { make in
             make.top.equalTo(phoneView.snp.bottom).offset(15)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(60)
-            make.height.equalTo(mailFirstLabel.snp.height)
+            make.left.equalToSuperview().inset(20)
+            make.right.equalToSuperview().inset(60)
+            make.height.equalTo(mailFirstLabel)
+        }
+    }
+    
+    private func configureImageSetPart() {
+        imageSetView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(168)
+            make.top.equalTo(mailView.snp.bottom).offset(16)
+        }
+        
+        imageFirst.snp.makeConstraints { make in
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalTo(222)
+        }
+        
+        smallImageSetView.snp.makeConstraints { make in
+            make.top.right.bottom.equalToSuperview()
+            make.left.equalTo(imageFirst.snp.right).offset(10)
+        }
+        
+        imageSecond.snp.makeConstraints { make in
+            make.height.equalTo(79)
+            make.width.equalTo(103)
+            make.top.left.right.equalToSuperview()
+        }
+        
+        imageThird.snp.makeConstraints { make in
+            make.height.equalTo(79)
+            make.width.equalTo(103)
+            make.top.equalTo(imageSecond.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
         }
     }
 }
