@@ -31,14 +31,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 25
-        paragraphStyle.alignment = .center
-        
-        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 21), NSAttributedString.Key.foregroundColor: UIColor.blueGrey, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: "123", attributes: myAttribute)
-        
-        label.attributedText = NSAttributedString(attributedString: attributedString)
+        label.attributedText = .toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .center, minimumLineHeight: 25, text: "123")
         
         return label
     }()
@@ -55,14 +48,8 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .darkSlateBlue, textAlignment: .center, minimumLineHeight: nil, text: "123")
         
-        let myAttribute = [NSAttributedString.Key.font: UIFont.sfuitextRegular(size: 15), NSAttributedString.Key.foregroundColor: UIColor.darkSlateBlue, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: "123", attributes: myAttribute)
-        
-        label.attributedText = NSAttributedString(attributedString: attributedString)
-
         return label
     }()
     
@@ -91,13 +78,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        
-        let myAttribute = [NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 11), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: "123", attributes: myAttribute)
-        
-        label.attributedText = NSAttributedString(attributedString: attributedString)
+        label.attributedText = .toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .white, textAlignment: .center, minimumLineHeight: nil, text: "123")
         
         return label
     }()
@@ -105,64 +86,79 @@ class EventCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configure()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    private func makeUI() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 5
-
-        contentView.addSubview(mainImageView)
-        mainImageView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview().inset(4)
-            make.height.equalTo(CGFloat.mainImageHeight)
-            make.width.equalTo(CGFloat.mainImageWidth)
-        }
         
-        mainImageView.addSubview(additionalImageView)
-        additionalImageView.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
-        }
+        addSubviews()
         
-        contentView.addSubview(nameLabel)
+        configureMainImagePart()
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(mainImageView.snp.bottom).inset(8)
             make.left.right.equalToSuperview()
         }
         
-        contentView.addSubview(heartImageView)
         heartImageView.snp.makeConstraints { make in
             make.height.equalTo(20)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(123)
         }
         
-        contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(heartImageView.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(23)
         }
         
+        configureDatePart()
+    }
+    
+    private func addSubviews() {
+        contentView.addSubview(mainImageView)
+ 
+        mainImageView.addSubview(additionalImageView)
+        
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(heartImageView)
+        contentView.addSubview(descriptionLabel)
         contentView.addSubview(greenView)
+
+        greenView.addSubview(emptyView)
+        emptyView.addSubview(dateImageView)
+        emptyView.addSubview(dateLabel)
+    }
+    
+    private func configureMainImagePart() {
+        mainImageView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview().inset(4)
+            make.height.equalTo(CGFloat.mainImageHeight)
+            make.width.equalTo(CGFloat.mainImageWidth)
+        }
+        
+        additionalImageView.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
+        }
+    }
+    
+    private func configureDatePart() {
         greenView.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
             make.left.bottom.right.equalToSuperview()
         }
         
-        greenView.addSubview(emptyView)
-        
-        emptyView.addSubview(dateImageView)
         dateImageView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
             make.height.equalTo(CGFloat.dateImageHeight)
             make.width.equalTo(CGFloat.dateImageWidth)
         }
 
-        emptyView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
             make.right.top.bottom.equalToSuperview()
             make.height.equalTo(13)

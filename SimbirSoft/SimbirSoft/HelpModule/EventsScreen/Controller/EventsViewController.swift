@@ -69,7 +69,7 @@ class EventsViewController: UIViewController {
         }
     }
     
-    private func toAttributedString(label: UILabel, text: String) -> NSAttributedString {
+    private func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
     }
 }
@@ -84,11 +84,11 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         
         cell.mainImageView.image = events[indexPath.row].image
         
-        cell.nameLabel.attributedText = toAttributedString(label: cell.nameLabel, text: events[indexPath.row].name)
+        cell.nameLabel.attributedText = attributeLabel(label: cell.nameLabel, text: events[indexPath.row].name)
         
-        cell.descriptionLabel.attributedText = toAttributedString(label: cell.descriptionLabel, text: events[indexPath.row].description)
+        cell.descriptionLabel.attributedText = attributeLabel(label: cell.descriptionLabel, text: events[indexPath.row].description)
         
-        cell.dateLabel.attributedText = toAttributedString(label: cell.dateLabel, text: events[indexPath.row].date)
+        cell.dateLabel.attributedText = attributeLabel(label: cell.dateLabel, text: events[indexPath.row].date)
         
         return cell
     }

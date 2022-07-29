@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .left, minimumLineHeight: 25, text: event.name)
+        label.attributedText = .toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .left, minimumLineHeight: 25, text: event.name)
         
         return label
     }()
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .grey, textAlignment: .center, minimumLineHeight: nil, text: event.date)
+        label.attributedText = .toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .grey, textAlignment: .center, minimumLineHeight: nil, text: event.date)
         
         return label
     }()
@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 11), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: 20, text: event.company)
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 11), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: 20, text: event.company)
         
         return label
     }()
@@ -63,7 +63,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.address)
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.address)
         
         return label
     }()
@@ -83,7 +83,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.phoneNumber)
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.phoneNumber)
 
         return label
     }()
@@ -103,7 +103,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: "У вас есть вопросы?")
+        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: "У вас есть вопросы?")
         
         return label
     }()
@@ -138,21 +138,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         makeUI()
-    }
-    
-    private func toAttributedString(font: UIFont, foregroundColor: UIColor, textAlignment: NSTextAlignment, minimumLineHeight: CGFloat?, text: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = textAlignment
-        
-        if let minimumLineHeight = minimumLineHeight {
-            paragraphStyle.minimumLineHeight = minimumLineHeight
-        }
-
-        let myAttribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: foregroundColor, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        
-        let attributedString = NSAttributedString(string: text, attributes: myAttribute)
-        
-        return attributedString
     }
     
     private func makeUI() {

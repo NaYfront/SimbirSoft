@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3928634B2892AB99002E406D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928634A2892AB99002E406D /* DetailViewController.swift */; };
+		395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
 		39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		3928634A2892AB99002E406D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
 		39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				39C29897288D890E0065CCAA /* UIColorExtension.swift */,
 				39C29899288D89F50065CCAA /* UIFontExtension.swift */,
+				395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				3928634B2892AB99002E406D /* DetailViewController.swift in Sources */,
 				39F5D4FB287F32740037E660 /* HelpViewController.swift in Sources */,
 				39C298A9288DE67D0065CCAA /* Event.swift in Sources */,
+				395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */,
 				39B7BEB028817F4700077A5D /* CategoriesMenu.swift in Sources */,
 				39B7BEB82881B74300077A5D /* CustomTabBar.swift in Sources */,
 				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
