@@ -31,7 +31,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .center, minimumLineHeight: 25, text: "123")
+        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 21), UIColor.blueGrey, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 25)], text: "text")
         
         return label
     }()
@@ -48,7 +48,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .darkSlateBlue, textAlignment: .center, minimumLineHeight: nil, text: "123")
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.darkSlateBlue, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
         
         return label
     }()
@@ -63,7 +63,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var emptyView = UIView()
+    lazy var dateView = UIView()
     
     lazy var dateImageView: UIImageView = {
         let imageView = UIImageView()
@@ -78,7 +78,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .white, textAlignment: .center, minimumLineHeight: nil, text: "123")
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.white, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
         
         return label
     }()
@@ -130,9 +130,9 @@ class EventCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(greenView)
 
-        greenView.addSubview(emptyView)
-        emptyView.addSubview(dateImageView)
-        emptyView.addSubview(dateLabel)
+        greenView.addSubview(dateView)
+        dateView.addSubview(dateImageView)
+        dateView.addSubview(dateLabel)
     }
     
     private func configureMainImagePart() {
@@ -153,6 +153,10 @@ class EventCollectionViewCell: UICollectionViewCell {
             make.left.bottom.right.equalToSuperview()
         }
         
+        dateView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
         dateImageView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
             make.height.equalTo(CGFloat.dateImageHeight)
@@ -161,14 +165,7 @@ class EventCollectionViewCell: UICollectionViewCell {
 
         dateLabel.snp.makeConstraints { make in
             make.right.top.bottom.equalToSuperview()
-            make.height.equalTo(13)
             make.left.equalTo(dateImageView.snp.right).offset(10)
-        }
-        
-        emptyView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.equalTo(13)
-            make.width.equalTo(dateLabel.snp.width).offset(CGFloat.dateImageWidth).offset(10)
         }
     }
 }

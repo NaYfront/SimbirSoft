@@ -10,9 +10,10 @@ import UIKit
 class DetailViewController: UIViewController {
     let event: Event
     
+    private let infoAttributes: [NSObject] = [UIFont.sfuitextRegular(size: 15), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)]
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bounces = true
         scrollView.contentSize = self.view.frame.size
@@ -26,7 +27,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(font: .officina(size: 21), foregroundColor: .blueGrey, textAlignment: .left, minimumLineHeight: 25, text: event.name)
+        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 21), UIColor.blueGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: 25)], text: event.name)
         
         return label
     }()
@@ -45,8 +46,8 @@ class DetailViewController: UIViewController {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-
-        label.attributedText = .toAttributedString(font: .sfuitextMedium(size: 11), foregroundColor: .grey, textAlignment: .center, minimumLineHeight: nil, text: event.date)
+        
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.date)
         
         return label
     }()
@@ -54,8 +55,8 @@ class DetailViewController: UIViewController {
     private lazy var companyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 11), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: 20, text: event.company)
+        
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 11), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: 20)], text: event.company)
         
         return label
     }()
@@ -75,7 +76,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.address)
+        label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.address)
         
         return label
     }()
@@ -95,7 +96,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.phoneNumber)
+        label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.phoneNumber)
 
         return label
     }()
@@ -115,7 +116,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: "У вас есть вопросы?")
+        label.attributedText = .toAttributedString(attributes: infoAttributes, text: "У вас есть вопросы?")
         
         return label
     }()
@@ -123,15 +124,8 @@ class DetailViewController: UIViewController {
     private lazy var mailSecondLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .left
-
-        let myAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.sfuitextRegular(size: 15), NSAttributedString.Key.foregroundColor: UIColor.leaf, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
         
-        let attributedString = NSAttributedString(string: "Напишите нам", attributes: myAttribute)
-
-        label.attributedText = attributedString
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Напишите нам")
         
         return label
     }()
@@ -171,7 +165,15 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(font: .sfuitextRegular(size: 15), foregroundColor: .charcoalGrey, textAlignment: .left, minimumLineHeight: nil, text: event.detailDescription)
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.detailDescription)
+        
+        return label
+    }()
+    
+    private lazy var siteLabel: UILabel = {
+        let label = UILabel()
+        
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Перейти на сайт организации")
         
         return label
     }()
@@ -227,7 +229,12 @@ class DetailViewController: UIViewController {
         detailDescriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(imageSetView.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
-            make.bottom.equalTo(containerView)
+        }
+        
+        siteLabel.snp.makeConstraints { make in
+            make.top.equalTo(detailDescriptionLabel.snp.bottom).offset(16)
+            make.left.right.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
     
@@ -267,6 +274,7 @@ class DetailViewController: UIViewController {
         smallImageSetView.addSubview(imageThird)
         
         containerView.addSubview(detailDescriptionLabel)
+        containerView.addSubview(siteLabel)
     }
     
     private func configureDatePart() {

@@ -58,17 +58,6 @@ class HelpViewController: UIViewController {
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButton
     }
-    
-    private func toAttributedString(text: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 20
-        paragraphStyle.alignment = .center
-        
-        let myAttribute = [NSAttributedString.Key.font: UIFont.officina(size: 17), NSAttributedString.Key.foregroundColor: UIColor.lightOliveGreen, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        let attributedString = NSAttributedString(string: text, attributes: myAttribute)
-        
-        return NSAttributedString(attributedString: attributedString)
-    }
 }
 
 extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -79,7 +68,8 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.label.attributedText = toAttributedString(text: menu.categories[indexPath.row].name)
+        cell.label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: menu.categories[indexPath.row].name)
+        
         cell.imageView.image = menu.categories[indexPath.row].image
         
         let image = menu.categories[indexPath.row].image
