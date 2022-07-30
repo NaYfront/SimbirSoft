@@ -178,6 +178,23 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    private lazy var usersView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGrey
+        
+        return view
+    }()
+    
+    private lazy var usersPhotosView = UIView()
+    
+    private lazy var usersLabel: UILabel = {
+        let label = UILabel()
+        
+        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 13), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: "+102")
+        
+        return label
+    }()
+    
     init(event: Event) {
         self.event = event
         
@@ -234,8 +251,9 @@ class DetailViewController: UIViewController {
         siteLabel.snp.makeConstraints { make in
             make.top.equalTo(detailDescriptionLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().offset(-20)
         }
+        
+        configureUsersView()
     }
     
     private func addSubviews() {
@@ -275,6 +293,9 @@ class DetailViewController: UIViewController {
         
         containerView.addSubview(detailDescriptionLabel)
         containerView.addSubview(siteLabel)
+        containerView.addSubview(usersView)
+        
+        usersView.addSubview(usersPhotosView)
     }
     
     private func configureDatePart() {
@@ -397,4 +418,46 @@ class DetailViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
     }
+    
+    private func configureUsersView() {
+        usersView.snp.makeConstraints { make in
+            make.top.equalTo(siteLabel.snp.bottom).offset(32)
+            make.height.equalTo(68)
+            make.left.bottom.right.equalToSuperview()
+        }
+        
+        usersPhotosView.snp.makeConstraints { make in
+            make.height.equalTo(36)
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().inset(20)
+        }
+        
+        let images = [#imageLiteral(resourceName: "photo1"), #imageLiteral(resourceName: "photo2"), #imageLiteral(resourceName: "photo3"), #imageLiteral(resourceName: "photo4"), #imageLiteral(resourceName: "photo5")]
+        var leftConstraint = 0
+        
+        for index in 0..<5 {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = images[index]
+            usersPhotosView.addSubview(imageView)
+            
+            imageView.snp.makeConstraints { make in
+                make.height.equalTo(36)
+                make.width.equalTo(36)
+                make.left.equalToSuperview().offset(leftConstraint)
+            }
+            
+            leftConstraint += 36
+        }
+        
+        usersView.addSubview(usersLabel)
+        
+        usersLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(usersPhotosView.snp.right).offset(190)
+        }
+    }
 }
+
+// make.bottom.equalToSuperview().offset(-20)
