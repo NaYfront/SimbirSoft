@@ -27,7 +27,7 @@ class CategoriesMenu {
                   company: "Благотворительный фонд \"Счастливый мир\"",
                   address: "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
                   phoneNumber: "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-                  detailImages: [#imageLiteral(resourceName: "event1"), #imageLiteral(resourceName: "detail3"), #imageLiteral(resourceName: "detail2")],
+                  detailImages: [#imageLiteral(resourceName: "detail1"), #imageLiteral(resourceName: "detail3"), #imageLiteral(resourceName: "detail2")],
                   detailDescription: "Участники и болельщики смогли весело и активно провести время на «Петербургском благотворительном марафоне» и при этом финансово поучаствовать в помощи детям.\n\nПри этом финансово поучаствовать в помощи детям. При этом финансово поучаствовать в помощи детям."),
             Event(image: #imageLiteral(resourceName: "event2"),
                   name: "Конкурс по вокальному пению в детском доме №6",

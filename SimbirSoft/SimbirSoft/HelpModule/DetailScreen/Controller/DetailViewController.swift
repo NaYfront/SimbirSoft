@@ -459,5 +459,3 @@ class DetailViewController: UIViewController {
         }
     }
 }
-
-// make.bottom.equalToSuperview().offset(-20)
