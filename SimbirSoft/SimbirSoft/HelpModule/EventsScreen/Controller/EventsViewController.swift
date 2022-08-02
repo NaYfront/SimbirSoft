@@ -41,6 +41,12 @@ class EventsViewController: UIViewController {
         makeUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     private func configure() {
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self

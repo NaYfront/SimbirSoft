@@ -21,6 +21,14 @@ class DetailViewController: UIViewController {
         return scrollView
     }()
     
+    private lazy var buttonsView: UIView = {
+        let view = UIView()
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.whiteTwo.cgColor
+        
+        return view
+    }()
+    
     private lazy var containerView = UIView()
     
     private lazy var nameLabel: UILabel = {
@@ -34,24 +42,6 @@ class DetailViewController: UIViewController {
     
     private lazy var dateView = UIView()
     
-    private lazy var dateImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "greyCalendar")
-        
-        return imageView
-    }()
-    
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.date)
-        
-        return label
-    }()
-    
     private lazy var companyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -62,104 +52,10 @@ class DetailViewController: UIViewController {
     }()
     
     private lazy var addressView = UIView()
-    
-    private lazy var addressImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "iconNav")
-        
-        return imageView
-    }()
-    
-    private lazy var addressLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-
-        label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.address)
-        
-        return label
-    }()
-    
     private lazy var phoneView = UIView()
-    
-    private lazy var phoneImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "iconPhone")
-        
-        return imageView
-    }()
-    
-    private lazy var phoneLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-
-        label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.phoneNumber)
-
-        return label
-    }()
-    
     private lazy var mailView = UIView()
     
-    private lazy var mailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "mail")
-        
-        return imageView
-    }()
-    
-    private lazy var mailFirstLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-
-        label.attributedText = .toAttributedString(attributes: infoAttributes, text: "У вас есть вопросы?")
-        
-        return label
-    }()
-    
-    private lazy var mailSecondLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Напишите нам")
-        
-        return label
-    }()
-    
     private lazy var imageSetView = UIView()
-    
-    private lazy var imageFirst: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[0])
-        
-        return imageView
-    }()
-    
-    private lazy var smallImageSetView = UIView()
-    
-    private lazy var imageSecond: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[1])
-        
-        return imageView
-    }()
-    
-    private lazy var imageThird: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[2])
-        
-        return imageView
-    }()
     
     private lazy var detailDescriptionLabel: UILabel = {
         let label = UILabel()
@@ -185,16 +81,6 @@ class DetailViewController: UIViewController {
         return view
     }()
     
-    private lazy var usersPhotosView = UIView()
-    
-    private lazy var usersLabel: UILabel = {
-        let label = UILabel()
-        
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 13), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: "+102")
-        
-        return label
-    }()
-    
     init(event: Event) {
         self.event = event
         
@@ -213,6 +99,7 @@ class DetailViewController: UIViewController {
     
     private func makeUI() {
         view.backgroundColor = .white
+        self.tabBarController?.tabBar.isHidden = true
         
         let shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "iconShare"), style: .plain, target: self, action: nil)
         shareButton.tintColor = .white
@@ -221,9 +108,11 @@ class DetailViewController: UIViewController {
         
         addSubviews()
         
+        configureButtonsPart()
+        
         scrollView.snp.makeConstraints { make in
             make.top.left.right.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view).offset(-20)
+            make.bottom.equalTo(buttonsView.snp.top)
         }
         
         containerView.snp.makeConstraints { (make) in
@@ -263,47 +152,101 @@ class DetailViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(scrollView)
+        view.addSubview(buttonsView)
         
         scrollView.addSubview(containerView)
         
         containerView.addSubview(nameLabel)
         containerView.addSubview(dateView)
         
-        dateView.addSubview(dateImageView)
-        dateView.addSubview(dateLabel)
-        
         containerView.addSubview(companyLabel)
+        
         containerView.addSubview(addressView)
-        
-        addressView.addSubview(addressImageView)
-        addressView.addSubview(addressLabel)
-        
         containerView.addSubview(phoneView)
-        
-        phoneView.addSubview(phoneImageView)
-        phoneView.addSubview(phoneLabel)
-        
         containerView.addSubview(mailView)
         
-        mailView.addSubview(mailImageView)
-        mailView.addSubview(mailFirstLabel)
-        mailView.addSubview(mailSecondLabel)
-        
         containerView.addSubview(imageSetView)
-        
-        imageSetView.addSubview(imageFirst)
-        imageSetView.addSubview(smallImageSetView)
-        smallImageSetView.addSubview(imageSecond)
-        smallImageSetView.addSubview(imageThird)
         
         containerView.addSubview(detailDescriptionLabel)
         containerView.addSubview(siteLabel)
         containerView.addSubview(usersView)
+    }
+    
+    private func configureButtonsPart() {
+        buttonsView.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
+            make.height.equalTo(70)
+        }
         
-        usersView.addSubview(usersPhotosView)
+        let images = [#imageLiteral(resourceName: "shirt"), #imageLiteral(resourceName: "hands"), #imageLiteral(resourceName: "tools"), #imageLiteral(resourceName: "coins")]
+        let strings = ["Помочь вещами", "Стать волонтером", "Проф. помощь", "Помочь деньгами"]
+        
+        let constraint = (UIScreen.main.bounds.width - 264) / 8
+        var leftConstraint = constraint
+        
+        for index in 0..<4 {
+            var configuration = UIButton.Configuration.plain()
+            configuration.imagePlacement = .top
+            let button = UIButton(configuration: configuration, primaryAction: nil)
+            
+            button.setAttributedTitle(.toAttributedString(attributes: [UIFont.sfuitextMedium(size: 10), UIColor.warmGrey, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: strings[index]), for: .normal)
+            button.setImage(images[index], for: .normal)
+            
+            buttonsView.addSubview(button)
+            button.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.width.equalTo(66)
+                make.height.equalTo(60)
+                make.left.equalToSuperview().inset(leftConstraint)
+            }
+            
+            button.titleLabel!.snp.makeConstraints { make in
+                make.left.bottom.right.equalToSuperview()
+                make.height.equalTo(24)
+            }
+            
+            button.imageView!.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.bottom.equalTo(button.titleLabel!).inset(30)
+            }
+            
+            if index != 3 {
+                let imageView = UIImageView()
+                imageView.image = #imageLiteral(resourceName: "separator")
+                
+                buttonsView.addSubview(imageView)
+                imageView.snp.makeConstraints { make in
+                    make.height.equalTo(70)
+                    make.width.equalTo(1)
+                    make.left.equalTo(button.snp.right).offset(constraint)
+                }
+            }
+            
+            leftConstraint += 66 + constraint * 2
+        }
     }
     
     private func configureDatePart() {
+        lazy var dateImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = #imageLiteral(resourceName: "greyCalendar")
+            
+            return imageView
+        }()
+        lazy var dateLabel: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            
+            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.date)
+            
+            return label
+        }()
+        
+        dateView.addSubview(dateImageView)
+        dateView.addSubview(dateLabel)
+        
         dateImageView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
             make.height.equalTo(13)
@@ -325,6 +268,26 @@ class DetailViewController: UIViewController {
     }
     
     private func configureAddressPart() {
+        lazy var addressImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = #imageLiteral(resourceName: "iconNav")
+            
+            return imageView
+        }()
+        lazy var addressLabel: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+
+            label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.address)
+            
+            return label
+        }()
+        
+        addressView.addSubview(addressImageView)
+        addressView.addSubview(addressLabel)
+        
         addressImageView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(3)
@@ -346,6 +309,26 @@ class DetailViewController: UIViewController {
     }
     
     private func configurePhonePart() {
+        lazy var phoneImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = #imageLiteral(resourceName: "iconPhone")
+            
+            return imageView
+        }()
+        lazy var phoneLabel: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+
+            label.attributedText = .toAttributedString(attributes: infoAttributes, text: event.phoneNumber)
+
+            return label
+        }()
+        
+        phoneView.addSubview(phoneImageView)
+        phoneView.addSubview(phoneLabel)
+        
         phoneImageView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(3)
@@ -367,6 +350,35 @@ class DetailViewController: UIViewController {
     }
     
     private func configureMailPart() {
+        lazy var mailImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = #imageLiteral(resourceName: "mail")
+            
+            return imageView
+        }()
+        lazy var mailFirstLabel: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+
+            label.attributedText = .toAttributedString(attributes: infoAttributes, text: "У вас есть вопросы?")
+            
+            return label
+        }()
+        lazy var mailSecondLabel: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            
+            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Напишите нам")
+            
+            return label
+        }()
+        
+        mailView.addSubview(mailImageView)
+        mailView.addSubview(mailFirstLabel)
+        mailView.addSubview(mailSecondLabel)
+        
         mailImageView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(4)
@@ -394,6 +406,39 @@ class DetailViewController: UIViewController {
     }
     
     private func configureImageSetPart() {
+        lazy var imageFirst: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(named: event.detailImages[0])
+            
+            return imageView
+        }()
+        
+        lazy var smallImageSetView = UIView()
+
+        lazy var imageSecond: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(named: event.detailImages[1])
+            
+            return imageView
+        }()
+        lazy var imageThird: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(named: event.detailImages[2])
+            
+            return imageView
+        }()
+        
+        imageSetView.addSubview(imageFirst)
+        imageSetView.addSubview(smallImageSetView)
+        smallImageSetView.addSubview(imageSecond)
+        smallImageSetView.addSubview(imageThird)
+        
         imageSetView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(168)
@@ -431,6 +476,8 @@ class DetailViewController: UIViewController {
             make.left.bottom.right.equalToSuperview()
         }
         
+        let usersPhotosView = UIView()
+        usersView.addSubview(usersPhotosView)
         usersPhotosView.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.centerY.equalToSuperview()
@@ -456,6 +503,13 @@ class DetailViewController: UIViewController {
             leftConstraint += 36
         }
         
+        lazy var usersLabel: UILabel = {
+            let label = UILabel()
+            
+            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 13), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: "+102")
+            
+            return label
+        }()
         usersView.addSubview(usersLabel)
         
         usersLabel.snp.makeConstraints { make in
