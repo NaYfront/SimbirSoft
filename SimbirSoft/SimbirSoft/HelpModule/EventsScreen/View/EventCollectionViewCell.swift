@@ -15,6 +15,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
         return imageView
     }()
     
@@ -22,8 +23,8 @@ class EventCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         imageView.image = #imageLiteral(resourceName: "bitmap")
+        
         return imageView
     }()
     
@@ -41,6 +42,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.image = #imageLiteral(resourceName: "heart")
+        
         return imageView
     }()
     

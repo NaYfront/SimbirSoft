@@ -82,7 +82,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = eventsCollectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.identifier, for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.mainImageView.image = events[indexPath.row].image
+        cell.mainImageView.image = UIImage(named: events[indexPath.row].image)
         
         cell.nameLabel.attributedText = attributeLabel(label: cell.nameLabel, text: events[indexPath.row].name)
         

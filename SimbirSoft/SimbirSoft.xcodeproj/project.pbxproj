@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3928634B2892AB99002E406D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928634A2892AB99002E406D /* DetailViewController.swift */; };
-		3939122B2896D1E700A89D03 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3939122A2896D1E700A89D03 /* JSONData.json */; };
+		3939122B2896D1E700A89D03 /* JSONCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 3939122A2896D1E700A89D03 /* JSONCategories.json */; };
+		3939122D2896DB8B00A89D03 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939122C2896DB8B00A89D03 /* DataService.swift */; };
+		3939122F2899551F00A89D03 /* JSONEvents.json in Resources */ = {isa = PBXBuildFile; fileRef = 3939122E2899551F00A89D03 /* JSONEvents.json */; };
 		395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */; };
 		3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
@@ -33,7 +35,9 @@
 
 /* Begin PBXFileReference section */
 		3928634A2892AB99002E406D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		3939122A2896D1E700A89D03 /* JSONData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
+		3939122A2896D1E700A89D03 /* JSONCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONCategories.json; sourceTree = "<group>"; };
+		3939122C2896DB8B00A89D03 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		3939122E2899551F00A89D03 /* JSONEvents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONEvents.json; sourceTree = "<group>"; };
 		395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableParagraphStyleExtension.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		393912282896D1A400A89D03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3939122C2896DB8B00A89D03 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -122,7 +127,8 @@
 		393912292896D1B300A89D03 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				3939122A2896D1E700A89D03 /* JSONData.json */,
+				3939122A2896D1E700A89D03 /* JSONCategories.json */,
+				3939122E2899551F00A89D03 /* JSONEvents.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -374,8 +380,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				39F5D503287F32750037E660 /* LaunchScreen.storyboard in Resources */,
-				3939122B2896D1E700A89D03 /* JSONData.json in Resources */,
+				3939122B2896D1E700A89D03 /* JSONCategories.json in Resources */,
 				39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */,
+				3939122F2899551F00A89D03 /* JSONEvents.json in Resources */,
 				39C298AF288E9BA30065CCAA /* sf-ui-text-medium.ttf in Resources */,
 				39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */,
 				39F5D500287F32750037E660 /* Assets.xcassets in Resources */,
@@ -458,6 +465,7 @@
 				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
+				3939122D2896DB8B00A89D03 /* DataService.swift in Sources */,
 				39C2989A288D89F50065CCAA /* UIFontExtension.swift in Sources */,
 				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
 				39C298B1288EAC290065CCAA /* EventCollectionViewCell.swift in Sources */,

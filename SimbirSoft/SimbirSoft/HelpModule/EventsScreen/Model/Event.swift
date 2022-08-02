@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-struct Event {
-    var image: UIImage
+struct Event: Decodable {
+    var image: String
     var name: String
     var description: String
     var date: String
     var company: String
     var address: String
     var phoneNumber: String
-    var detailImages: [UIImage]
+    var detailImages: [String]
     var detailDescription: String
 }

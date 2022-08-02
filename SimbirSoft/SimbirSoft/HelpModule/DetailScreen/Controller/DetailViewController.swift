@@ -136,7 +136,7 @@ class DetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "detail1")
+        imageView.image = UIImage(named: event.detailImages[0])
         
         return imageView
     }()
@@ -147,7 +147,7 @@ class DetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "detail3")
+        imageView.image = UIImage(named: event.detailImages[1])
         
         return imageView
     }()
@@ -156,7 +156,7 @@ class DetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "detail2")
+        imageView.image = UIImage(named: event.detailImages[2])
         
         return imageView
     }()

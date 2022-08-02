@@ -9,7 +9,8 @@ import SnapKit
 import UIKit
 
 class HelpViewController: UIViewController {
-    let menu = CategoriesMenu()
+    var categories: [Category] = [Category]()
+    let dataService = DataService()
     
     private let mainCollectionView = UICollectionView(
         frame: .zero,
@@ -51,6 +52,8 @@ class HelpViewController: UIViewController {
     }
     
     private func configure() {
+        getCategories()
+        
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
         mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
@@ -58,21 +61,33 @@ class HelpViewController: UIViewController {
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButton
     }
+    
+    private func getCategories() {
+        dataService.getData { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let categories):
+                self.categories = categories
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menu.categories.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: menu.categories[indexPath.row].name)
+        cell.label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: categories[indexPath.row].name)
         
-        cell.imageView.image = menu.categories[indexPath.row].image
+        cell.imageView.image = UIImage(named: categories[indexPath.row].image)
         
-        let image = menu.categories[indexPath.row].image
+        let image = cell.imageView.image
         cell.imageView.snp.makeConstraints { make in
             guard let image = image else { return }
             
@@ -97,8 +112,8 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let eventsVC = EventsViewController()
-        eventsVC.events = menu.categories[indexPath.row].events
-        eventsVC.navigationItem.title = menu.categories[indexPath.row].name
+        eventsVC.events = categories[indexPath.row].events
+        eventsVC.navigationItem.title = categories[indexPath.row].name
         
         self.navigationController?.pushViewController(eventsVC, animated: true)
     }
