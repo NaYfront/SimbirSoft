@@ -49,8 +49,10 @@ class EventsViewController: UIViewController {
     
     private func makeUI() {
         let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
-        filterButton.tintColor = .white
         navigationItem.rightBarButtonItem = filterButton
+        
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButton
         
         view.backgroundColor = .white
         eventsCollectionView.backgroundColor = .lightGrey
@@ -107,6 +109,12 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController(event: events[indexPath.row])
+        
+        let fullTitle = events[indexPath.row].name
+        let index = fullTitle.index(fullTitle.startIndex, offsetBy: 20)
+        let title = String("\(fullTitle[..<index])...")
+        
+        detailVC.navigationItem.title = title
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }

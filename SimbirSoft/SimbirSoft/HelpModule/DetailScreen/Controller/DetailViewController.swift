@@ -214,6 +214,11 @@ class DetailViewController: UIViewController {
     private func makeUI() {
         view.backgroundColor = .white
         
+        let shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "iconShare"), style: .plain, target: self, action: nil)
+        shareButton.tintColor = .white
+
+        navigationItem.rightBarButtonItem = shareButton
+        
         addSubviews()
         
         scrollView.snp.makeConstraints { make in
