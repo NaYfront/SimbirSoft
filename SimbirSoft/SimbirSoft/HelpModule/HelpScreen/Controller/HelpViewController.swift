@@ -29,7 +29,6 @@ class HelpViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        makeUI()
     }
     
     private func makeUI() {
@@ -65,11 +64,14 @@ class HelpViewController: UIViewController {
     private func getCategories() {
         dataService.getData { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let categories):
-                self.categories = categories
-            case .failure(let error):
-                fatalError(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let categories):
+                    self.categories = categories
+                    self.makeUI()
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
+                }
             }
         }
     }
