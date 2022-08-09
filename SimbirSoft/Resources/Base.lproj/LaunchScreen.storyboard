@@ -50,12 +50,6 @@
                                     <constraint firstAttribute="width" constant="247" id="f6d-wP-uVj"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYE-0W-Rfo">
-                                <rect key="frame" x="139" y="605" width="97" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="shirt" imagePlacement="top" title="Помочь одеждой" imagePadding="9" titleAlignment="center"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,6 +74,5 @@
         <image name="hochuPomoch" width="753" height="231"/>
         <image name="loading" width="126" height="130"/>
         <image name="mobileSimbirsoft" width="348" height="48"/>
-        <image name="shirt" width="22" height="19"/>
     </resources>
 </document>

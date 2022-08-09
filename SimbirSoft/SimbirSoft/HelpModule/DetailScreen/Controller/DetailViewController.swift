@@ -414,7 +414,7 @@ class DetailViewController: UIViewController {
             
             return imageView
         }()
-        
+
         lazy var smallImageSetView = UIView()
 
         lazy var imageSecond: UIImageView = {
