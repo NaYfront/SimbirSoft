@@ -8,9 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainCollectionViewCell: UICollectionViewCell {
-    static let identifier = "MainCollectionViewCell"
-    
+class MainCollectionViewCell: UICollectionViewCell {    
     // MARK: - User Interface
     let imageView: UIImageView = {
         let imageView = UIImageView()

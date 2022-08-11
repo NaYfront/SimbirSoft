@@ -8,9 +8,7 @@
 import UIKit
 import SnapKit
 
-class EventCollectionViewCell: UICollectionViewCell {
-    static let identifier = "EventCollectionViewCell"
-    
+class EventCollectionViewCell: UICollectionViewCell {    
     // MARK: - User Interface
     lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
