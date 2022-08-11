@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="sf-ui-text-regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssb-gA-7VW">
+                                <rect key="frame" x="172.5" y="490.5" width="69" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="EyT-NR-iSa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                <color key="textColor" red="0.28627450980392155" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mobileSimbirsoft" translatesAutoresizingMaskIntoConstraints="NO" id="ReY-QZ-2z0">
+                                <rect key="frame" x="149" y="806" width="116" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="Saw-2D-v3q"/>
+                                    <constraint firstAttribute="height" constant="16" id="mZn-dG-Ro3"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-Tv-bnf">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PF8-Iw-y13"/>
+                                    <constraint firstAttribute="width" constant="40" id="tfp-tx-qLs"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hochuPomoch" translatesAutoresizingMaskIntoConstraints="NO" id="MTm-bK-Y0P">
+                                <rect key="frame" x="83.5" y="279" width="247" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="LDj-F8-8Ov"/>
+                                    <constraint firstAttribute="width" constant="247" id="f6d-wP-uVj"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GCe-Tv-bnf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8nJ-K0-6NO"/>
+                            <constraint firstItem="MTm-bK-Y0P" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-132" id="L8o-re-ksp"/>
+                            <constraint firstItem="Ssb-gA-7VW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UW4-WE-txS"/>
+                            <constraint firstItem="MTm-bK-Y0P" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="crN-8b-rdT"/>
+                            <constraint firstItem="GCe-Tv-bnf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dxt-Ou-kcN"/>
+                            <constraint firstItem="ReY-QZ-2z0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kCB-WK-QaM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ReY-QZ-2z0" secondAttribute="bottom" constant="40" id="qKc-PZ-FDY"/>
+                            <constraint firstItem="Ssb-gA-7VW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="50" id="wwS-Q2-9sm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hochuPomoch" width="753" height="231"/>
+        <image name="loading" width="126" height="130"/>
+        <image name="mobileSimbirsoft" width="348" height="48"/>
+    </resources>
+</document>

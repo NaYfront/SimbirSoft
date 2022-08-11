@@ -11,7 +11,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let standard = UINavigationBarAppearance()
+        standard.configureWithOpaqueBackground()
+        
+        standard.setBackIndicatorImage(#imageLiteral(resourceName: "backButton"), transitionMaskImage: #imageLiteral(resourceName: "backButton"))
+        
+        let barAppearance = UINavigationBar.appearance()
+        barAppearance.tintColor = .white
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = 50
+        
+        standard.backgroundColor = .leaf
+        standard.titleTextAttributes = [.font: UIFont.officina(size: 21), .foregroundColor: UIColor.white, .paragraphStyle: paragraphStyle]
+
+        UINavigationBar.appearance().standardAppearance = standard
+        UINavigationBar.appearance().compactAppearance = standard
+        UINavigationBar.appearance().scrollEdgeAppearance = standard
+        
         return true
     }
 
