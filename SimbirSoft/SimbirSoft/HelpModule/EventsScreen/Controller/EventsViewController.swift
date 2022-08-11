@@ -62,7 +62,7 @@ class EventsViewController: UIViewController {
         
         startActivityIndicator()
         
-        getEvents()
+        getData()
         
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self
@@ -102,8 +102,8 @@ class EventsViewController: UIViewController {
         return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
     }
     
-    private func getEvents() {
-        dataService.getEvents(category: categoryName) { [weak self] result in
+    private func getData() {
+        dataService.getData(category: categoryName, type: Event.self) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {

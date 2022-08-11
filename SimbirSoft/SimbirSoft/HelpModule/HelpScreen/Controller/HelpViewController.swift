@@ -69,7 +69,7 @@ class HelpViewController: UIViewController {
         
         startActivityIndicator()
         
-        getCategories()
+        getData()
         
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
@@ -79,8 +79,8 @@ class HelpViewController: UIViewController {
         navigationItem.backBarButtonItem = backBarButton
     }
     
-    private func getCategories() {
-        dataService.getCategories { [weak self] result in
+    private func getData() {
+        dataService.getData(category: nil, type: Category.self) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
