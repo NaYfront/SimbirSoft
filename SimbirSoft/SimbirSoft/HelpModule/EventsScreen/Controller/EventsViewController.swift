@@ -5,15 +5,26 @@
 //  Created by NaYfront on 24.07.2022.
 //
 
+import SnapKit
 import UIKit
 
 class EventsViewController: UIViewController {
     var events: [Event] = []
+    var categoryName = ""
+    let dataService = DataService()
     
     private lazy var whiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
+    }()
+    
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.startAnimating()
+        indicator.color = .leaf
+        
+        return indicator
     }()
     
     private lazy var eventsCollectionView = UICollectionView(
@@ -38,7 +49,6 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        makeUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,19 +58,23 @@ class EventsViewController: UIViewController {
     }
     
     private func configure() {
+        view.backgroundColor = .white
+        
+        startActivityIndicator()
+        
+        getEvents()
+        
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self
         eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.identifier)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func makeUI() {
-        let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = filterButton
+        indicator.stopAnimating()
         
-        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backBarButton
-        
-        view.backgroundColor = .white
         eventsCollectionView.backgroundColor = .lightGrey
         eventsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
@@ -77,8 +91,31 @@ class EventsViewController: UIViewController {
         }
     }
     
+    private func startActivityIndicator() {
+        view.addSubview(indicator)
+        indicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
     private func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
+    }
+    
+    private func getEvents() {
+        dataService.getEvents(category: categoryName) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let events):
+                    self.events = events
+                    sleep(1)
+                    self.makeUI()
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 

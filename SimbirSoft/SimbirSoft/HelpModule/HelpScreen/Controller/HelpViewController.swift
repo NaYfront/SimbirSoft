@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 class HelpViewController: UIViewController {
-    var categories: [Category] = [Category]()
+    var categories: [Category] = []
     let dataService = DataService()
     
     private let mainCollectionView = UICollectionView(
@@ -25,16 +25,29 @@ class HelpViewController: UIViewController {
         return label
     }()
     
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.startAnimating()
+        indicator.color = .leaf
+        
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
     }
     
+    private func startActivityIndicator() {
+        view.addSubview(indicator)
+        indicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
     private func makeUI() {
-        view.backgroundColor = .white
-        
-        self.navigationItem.title = "Помочь"
+        indicator.stopAnimating()
         
         view.addSubview(label)
         label.snp.makeConstraints { make in
@@ -51,6 +64,11 @@ class HelpViewController: UIViewController {
     }
     
     private func configure() {
+        view.backgroundColor = .white
+        self.navigationItem.title = "Помочь"
+        
+        startActivityIndicator()
+        
         getCategories()
         
         mainCollectionView.delegate = self
@@ -62,12 +80,13 @@ class HelpViewController: UIViewController {
     }
     
     private func getCategories() {
-        dataService.getData { [weak self] result in
+        dataService.getCategories { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let categories):
                     self.categories = categories
+                    sleep(1)
                     self.makeUI()
                 case .failure(let error):
                     fatalError(error.localizedDescription)
@@ -114,7 +133,8 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let eventsVC = EventsViewController()
-        eventsVC.events = categories[indexPath.row].events
+//        eventsVC.events = categories[indexPath.row].events
+        eventsVC.categoryName = categories[indexPath.row].name
         eventsVC.navigationItem.title = categories[indexPath.row].name
         
         self.navigationController?.pushViewController(eventsVC, animated: true)

@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 struct Event: Decodable {
+    var id: Int
+    var categoryName: String
     var image: String
     var name: String
     var description: String
