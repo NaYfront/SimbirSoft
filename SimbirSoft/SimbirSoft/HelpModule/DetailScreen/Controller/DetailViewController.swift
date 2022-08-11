@@ -8,10 +8,12 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    // MARK: - Properties
     let event: Event
     
     private let infoAttributes: [NSObject] = [UIFont.sfuitextRegular(size: 15), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)]
     
+    // MARK: - User Interface
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -81,6 +83,7 @@ class DetailViewController: UIViewController {
         return view
     }()
     
+    // MARK: - Initializers
     init(event: Event) {
         self.event = event
         
@@ -91,12 +94,14 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         makeUI()
     }
     
+    // MARK: - Private Functions
     private func makeUI() {
         view.backgroundColor = .white
         self.tabBarController?.tabBar.isHidden = true

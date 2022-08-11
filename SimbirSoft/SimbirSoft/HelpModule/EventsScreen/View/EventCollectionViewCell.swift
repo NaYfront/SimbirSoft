@@ -11,6 +11,7 @@ import SnapKit
 class EventCollectionViewCell: UICollectionViewCell {
     static let identifier = "EventCollectionViewCell"
     
+    // MARK: - User Interface
     lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -85,6 +86,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -95,6 +97,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private Functions
     private func makeUI() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 5
@@ -172,6 +175,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Constants
 private extension CGFloat {
     static let mainImageWidth = UIScreen.main.bounds.width - 24
     static let mainImageHeight = 231

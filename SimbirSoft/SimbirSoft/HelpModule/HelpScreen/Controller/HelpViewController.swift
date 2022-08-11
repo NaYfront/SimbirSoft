@@ -9,9 +9,11 @@ import SnapKit
 import UIKit
 
 class HelpViewController: UIViewController {
+    // MARK: - Properties
     var categories: [Category] = []
     let dataService = DataService()
     
+    // MARK: - User Interface
     private let mainCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
@@ -33,12 +35,14 @@ class HelpViewController: UIViewController {
         return indicator
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
     }
     
+    // MARK: - Private Functions
     private func startActivityIndicator() {
         view.addSubview(indicator)
         indicator.snp.makeConstraints { make in
@@ -96,7 +100,8 @@ class HelpViewController: UIViewController {
     }
 }
 
-extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource
+extension HelpViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -118,7 +123,21 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         return cell
     }
-    
+}
+
+// MARK: - UICollectionViewDelegate
+extension HelpViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let eventsVC = EventsViewController()
+        eventsVC.categoryName = categories[indexPath.row].name
+        eventsVC.navigationItem.title = categories[indexPath.row].name
+        
+        self.navigationController?.pushViewController(eventsVC, animated: true)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension HelpViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .cellSize
     }
@@ -130,17 +149,9 @@ extension HelpViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return .interitemSpacing
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let eventsVC = EventsViewController()
-//        eventsVC.events = categories[indexPath.row].events
-        eventsVC.categoryName = categories[indexPath.row].name
-        eventsVC.navigationItem.title = categories[indexPath.row].name
-        
-        self.navigationController?.pushViewController(eventsVC, animated: true)
-    }
 }
 
+// MARK: - Constants
 private extension CGSize {
     static let cellSize = { () -> CGSize in 
         if UIScreen.main.bounds.width < 375 {

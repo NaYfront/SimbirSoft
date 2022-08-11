@@ -9,23 +9,6 @@ import Foundation
 import UIKit
 
 extension NSAttributedString {
-    static func toAttributedString(font: UIFont, foregroundColor: UIColor, textAlignment: NSTextAlignment, minimumLineHeight: CGFloat?, text: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = textAlignment
-        
-        if let minimumLineHeight = minimumLineHeight {
-            paragraphStyle.minimumLineHeight = minimumLineHeight
-        }
-
-        let myAttribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: foregroundColor, NSAttributedString.Key.paragraphStyle: paragraphStyle]
-        
-        let attributedString = NSMutableAttributedString(string: text, attributes: myAttribute)
-                
-        return attributedString
-    }
-
-    // Улучшенный вариант
-    
     static func toAttributedString(attributes: [NSObject], text: String) -> NSAttributedString {
 
         let convertedAttributes = NSAttributedString.toAttributes(attributes: attributes)

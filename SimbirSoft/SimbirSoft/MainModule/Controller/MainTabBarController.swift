@@ -8,6 +8,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    // MARK: - User Interface
     private lazy var middleButton: UIButton = {
         let middleButton = UIButton()
         middleButton.layer.cornerRadius = .middleButtonDiameter / 2
@@ -27,6 +28,7 @@ class MainTabBarController: UITabBarController {
         return heartImageView
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +36,7 @@ class MainTabBarController: UITabBarController {
         configure()
     }
     
+    // MARK: - Private Functions
     private func makeUI() {
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
 
@@ -92,6 +95,7 @@ class MainTabBarController: UITabBarController {
     }
 }
 
+// MARK: - UITabBarControllerDelegate
 extension MainTabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let selectedIndex = self.tabBar.items?.firstIndex(of: item)
@@ -103,6 +107,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
 }
 
+// MARK: - Constants
 private extension CGFloat {
     static let middleButtonDiameter: CGFloat = 42
 }

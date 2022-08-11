@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CustomTabBar: UITabBar {
+    // MARK: - Properties
     private var tabBarWidth: CGFloat { self.bounds.width }
     private var tabBarHeight: CGFloat { self.bounds.height }
     private var centerWidth: CGFloat { self.bounds.width / 2 }
@@ -17,6 +18,7 @@ class CustomTabBar: UITabBar {
     private var shapeLayer: CALayer?
     private var circleLayer: CALayer?
     
+    // MARK: - Functions
     private func shapePath() -> CGPath {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
@@ -66,6 +68,7 @@ class CustomTabBar: UITabBar {
         self.circleLayer = circleLayer
     }
     
+    // MARK: - Override Functions
     override func draw(_ rect: CGRect) {
         drawTabBar()
     }

@@ -9,10 +9,12 @@ import SnapKit
 import UIKit
 
 class EventsViewController: UIViewController {
+    // MARK: - Properties
     var events: [Event] = []
     var categoryName = ""
     let dataService = DataService()
     
+    // MARK: - User Interface
     private lazy var whiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -45,6 +47,7 @@ class EventsViewController: UIViewController {
         return control
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +60,7 @@ class EventsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - Private Functions
     private func configure() {
         view.backgroundColor = .white
         
@@ -119,7 +123,8 @@ class EventsViewController: UIViewController {
     }
 }
 
-extension EventsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource
+extension EventsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return events.count
     }
@@ -137,19 +142,10 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .cellSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
+}
+
+// MARK: - UICollectionViewDelegate
+extension EventsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController(event: events[indexPath.row])
         
@@ -163,6 +159,22 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+extension EventsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
+
+// MARK: - Constants
 private extension CGSize {
     static let cellSize = { () -> CGSize in
         return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)

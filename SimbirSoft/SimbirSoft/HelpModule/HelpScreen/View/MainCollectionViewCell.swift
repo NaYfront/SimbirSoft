@@ -11,6 +11,7 @@ import SnapKit
 class MainCollectionViewCell: UICollectionViewCell {
     static let identifier = "MainCollectionViewCell"
     
+    // MARK: - User Interface
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -23,6 +24,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -33,6 +35,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private Functions
     private func configure() {
         contentView.backgroundColor = .lightGrey
         
