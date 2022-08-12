@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 extension NSMutableParagraphStyle {
-    convenience init(alignment: NSTextAlignment?, minimumLineLenght: CGFloat?) {
+    convenience init(alignment: NSTextAlignment?, minimumLineLength: CGFloat?) {
         self.init()
         
         if let alignment = alignment {
             self.alignment = alignment
         }
         
-        if let minimumLineHeight = minimumLineLenght {
+        if let minimumLineHeight = minimumLineLength {
             self.minimumLineHeight = minimumLineHeight
         }
     }

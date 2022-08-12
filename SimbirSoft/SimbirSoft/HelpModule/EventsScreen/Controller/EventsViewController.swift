@@ -43,8 +43,15 @@ class EventsViewController: UIViewController {
         control.layer.borderColor = UIColor.leaf.cgColor
         control.selectedSegmentTintColor = .leaf
         control.selectedSegmentIndex = 0
-        control.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13), NSAttributedString.Key.foregroundColor: UIColor.leaf], for: .normal)
-        control.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13), NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        control.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.leaf
+        ],
+                                       for: .normal)
+        control.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.white],
+                                       for: .selected)
         return control
     }()
     

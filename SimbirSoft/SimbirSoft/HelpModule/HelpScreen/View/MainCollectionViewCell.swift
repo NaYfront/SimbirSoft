@@ -35,7 +35,11 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     func configure(with category: Category) {
-        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: category.name)
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.officina(size: 17),
+                         UIColor.lightOliveGreen,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: 20)],
+            text: category.name)
         
         imageView.image = UIImage(named: category.image)
         imageView.snp.makeConstraints { make in

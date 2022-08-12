@@ -11,7 +11,10 @@ class DetailViewController: UIViewController {
     // MARK: - Properties
     let event: Event
     
-    private let infoAttributes: [NSObject] = [UIFont.sfuitextRegular(size: 15), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)]
+    private let infoAttributes: [NSObject] = [
+        UIFont.sfuitextRegular(size: 15),
+        UIColor.charcoalGrey,
+        NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)]
     
     // MARK: - User Interface
     private lazy var scrollView: UIScrollView = {
@@ -37,7 +40,11 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 21), UIColor.blueGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: 25)], text: event.name)
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.officina(size: 21),
+                         UIColor.blueGrey,
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 25)],
+            text: event.name)
         
         return label
     }()
@@ -48,7 +55,11 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 11), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: 20)], text: event.company)
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.sfuitextRegular(size: 11),
+                         UIColor.charcoalGrey,
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 20)],
+            text: event.company)
         
         return label
     }()
@@ -63,7 +74,11 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.charcoalGrey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.detailDescription)
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.sfuitextRegular(size: 15),
+                         UIColor.charcoalGrey,
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
+            text: event.detailDescription)
         
         return label
     }()
@@ -71,7 +86,12 @@ class DetailViewController: UIViewController {
     private lazy var siteLabel: UILabel = {
         let label = UILabel()
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Перейти на сайт организации")
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.sfuitextRegular(size: 15),
+                         UIColor.leaf,
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil),
+                         NSNumber(1)],
+            text: "Перейти на сайт организации")
         
         return label
     }()
@@ -194,7 +214,12 @@ class DetailViewController: UIViewController {
             configuration.imagePlacement = .top
             let button = UIButton(configuration: configuration, primaryAction: nil)
             
-            button.setAttributedTitle(.toAttributedString(attributes: [UIFont.sfuitextMedium(size: 10), UIColor.warmGrey, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: strings[index]), for: .normal)
+            button.setAttributedTitle(.toAttributedString(
+                attributes: [UIFont.sfuitextMedium(size: 10),
+                             UIColor.warmGrey,
+                             NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)],
+                text: strings[index]),
+                                      for: .normal)
             button.setImage(images[index], for: .normal)
             
             buttonsView.addSubview(button)
@@ -244,7 +269,11 @@ class DetailViewController: UIViewController {
             let label = UILabel()
             label.numberOfLines = 0
             
-            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: event.date)
+            label.attributedText = .toAttributedString(
+                attributes: [UIFont.sfuitextMedium(size: 11),
+                             UIColor.grey,
+                             NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
+                text: event.date)
             
             return label
         }()
@@ -375,7 +404,12 @@ class DetailViewController: UIViewController {
             let label = UILabel()
             label.numberOfLines = 0
             
-            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.leaf, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil), NSNumber(1)], text: "Напишите нам")
+            label.attributedText = .toAttributedString(
+                attributes: [UIFont.sfuitextRegular(size: 15),
+                             UIColor.leaf,
+                             NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil),
+                             NSNumber(1)],
+                text: "Напишите нам")
             
             return label
         }()
@@ -511,7 +545,11 @@ class DetailViewController: UIViewController {
         lazy var usersLabel: UILabel = {
             let label = UILabel()
             
-            label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 13), UIColor.grey, NSMutableParagraphStyle(alignment: .left, minimumLineLenght: nil)], text: "+102")
+            label.attributedText = .toAttributedString(
+                attributes: [UIFont.sfuitextRegular(size: 13),
+                             UIColor.grey,
+                             NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
+                text: "+102")
             
             return label
         }()

@@ -31,7 +31,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 21), UIColor.blueGrey, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 25)], text: "text")
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.officina(size: 21),
+                         UIColor.blueGrey,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: 25)],
+            text: "text")
         
         return label
     }()
@@ -49,7 +53,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.darkSlateBlue, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.sfuitextRegular(size: 15),
+                         UIColor.darkSlateBlue,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)],
+            text: "text")
         
         return label
     }()
@@ -79,7 +87,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.white, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
+        label.attributedText = .toAttributedString(
+            attributes: [UIFont.sfuitextMedium(size: 11),
+                         UIColor.white,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)],
+            text: "text")
         
         return label
     }()
