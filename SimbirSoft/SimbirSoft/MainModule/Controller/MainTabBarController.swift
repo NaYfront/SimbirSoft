@@ -36,32 +36,7 @@ class MainTabBarController: UITabBarController {
         configure()
     }
     
-    // MARK: - Private Functions
-    private func makeUI() {
-        setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
-
-        tabBar.tintColor = .leaf
-
-        tabBar.addSubview(middleButton)
-        middleButton.addSubview(heartImageView)
-
-        NSLayoutConstraint.activate([
-            middleButton.heightAnchor.constraint(equalToConstant: .middleButtonDiameter),
-            middleButton.widthAnchor.constraint(equalToConstant: .middleButtonDiameter),
-            
-            middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
-        ])
-
-        NSLayoutConstraint.activate([
-            heartImageView.heightAnchor.constraint(equalToConstant: 15),
-            heartImageView.widthAnchor.constraint(equalToConstant: 18),
-            
-            heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
-            heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
-        ])
-    }
-    
+    // MARK: - Configuration
     private func configure() {
         let firstVC = UIViewController()
         firstVC.tabBarItem.title = "Новости"
@@ -86,6 +61,32 @@ class MainTabBarController: UITabBarController {
         viewControllers = [firstVC, secondVC, middleVC, fourthVC, fifthVC]
         
         self.selectedIndex = 2
+    }
+    
+    // MARK: - Private Functions
+    private func makeUI() {
+        setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
+
+        tabBar.tintColor = .leaf
+
+        tabBar.addSubview(middleButton)
+        middleButton.addSubview(heartImageView)
+
+        NSLayoutConstraint.activate([
+            middleButton.heightAnchor.constraint(equalToConstant: .middleButtonDiameter),
+            middleButton.widthAnchor.constraint(equalToConstant: .middleButtonDiameter),
+            
+            middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
+            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
+        ])
+
+        NSLayoutConstraint.activate([
+            heartImageView.heightAnchor.constraint(equalToConstant: 15),
+            heartImageView.widthAnchor.constraint(equalToConstant: 18),
+            
+            heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
+            heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
+        ])
     }
     
     @objc

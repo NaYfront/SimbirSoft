@@ -10,8 +10,8 @@ import UIKit
 
 class HelpViewController: UIViewController {
     // MARK: - Properties
-    var categories: [Category] = []
-    let dataService = DataService()
+    private var categories: [Category] = []
+    private let dataService = DataService()
     
     // MARK: - User Interface
     private let mainCollectionView = UICollectionView(
@@ -42,6 +42,23 @@ class HelpViewController: UIViewController {
         configure()
     }
     
+    // MARK: - Configuration
+    private func configure() {
+        view.backgroundColor = .white
+        self.navigationItem.title = "Помочь"
+        
+        startActivityIndicator()
+        
+        getData()
+        
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
+        mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "MainCollectionViewCell")
+        
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButton
+    }
+    
     // MARK: - Private Functions
     private func startActivityIndicator() {
         view.addSubview(indicator)
@@ -65,22 +82,6 @@ class HelpViewController: UIViewController {
             make.left.right.equalToSuperview().inset(Int(.interitemSpacing))
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-    
-    private func configure() {
-        view.backgroundColor = .white
-        self.navigationItem.title = "Помочь"
-        
-        startActivityIndicator()
-        
-        getData()
-        
-        mainCollectionView.delegate = self
-        mainCollectionView.dataSource = self
-        mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "MainCollectionViewCell")
-        
-        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backBarButton
     }
     
     private func getData() {
@@ -109,18 +110,9 @@ extension HelpViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: categories[indexPath.row].name)
-        
-        cell.imageView.image = UIImage(named: categories[indexPath.row].image)
-        
-        let image = cell.imageView.image
-        cell.imageView.snp.makeConstraints { make in
-            guard let image = image else { return }
-            
-            make.width.equalTo(image.size.width / 3)
-            make.width.height.equalTo(image.size.height / 3)
-        }
-        
+        let category = categories[indexPath.row]
+        cell.configure(with: category)
+
         return cell
     }
 }

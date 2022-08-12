@@ -24,6 +24,10 @@ extension NSAttributedString {
         return attributedString
     }
     
+    static func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
+        return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
+    }
+    
     private static func toAttributes(attributes: [NSObject]) -> [NSAttributedString.Key: Any] {
         var convertedAttributes: [NSAttributedString.Key: Any] = [:]
         

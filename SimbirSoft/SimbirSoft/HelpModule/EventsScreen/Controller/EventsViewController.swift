@@ -10,9 +10,10 @@ import UIKit
 
 class EventsViewController: UIViewController {
     // MARK: - Properties
-    var events: [Event] = []
+    private var events: [Event] = []
+    private let dataService = DataService()
+    
     var categoryName = ""
-    let dataService = DataService()
     
     // MARK: - User Interface
     private lazy var whiteView: UIView = {
@@ -60,7 +61,7 @@ class EventsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: - Private Functions
+    // MARK: - Configuration
     private func configure() {
         view.backgroundColor = .white
         
@@ -76,6 +77,7 @@ class EventsViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
+    // MARK: - Private Functions
     private func makeUI() {
         indicator.stopAnimating()
         
@@ -100,10 +102,6 @@ class EventsViewController: UIViewController {
         indicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-    }
-    
-    private func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
-        return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
     }
     
     private func getData() {
@@ -132,13 +130,8 @@ extension EventsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = eventsCollectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.mainImageView.image = UIImage(named: events[indexPath.row].image)
-        
-        cell.nameLabel.attributedText = attributeLabel(label: cell.nameLabel, text: events[indexPath.row].name)
-        
-        cell.descriptionLabel.attributedText = attributeLabel(label: cell.descriptionLabel, text: events[indexPath.row].description)
-        
-        cell.dateLabel.attributedText = attributeLabel(label: cell.dateLabel, text: events[indexPath.row].date)
+        let event = events[indexPath.row]
+        cell.configure(with: event)
         
         return cell
     }

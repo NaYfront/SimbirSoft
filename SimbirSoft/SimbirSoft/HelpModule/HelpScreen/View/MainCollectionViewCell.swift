@@ -10,14 +10,14 @@ import SnapKit
 
 class MainCollectionViewCell: UICollectionViewCell {    
     // MARK: - User Interface
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -26,15 +26,27 @@ class MainCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configure()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration
+    func configure(with category: Category) {
+        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 17), UIColor.lightOliveGreen, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 20)], text: category.name)
+        
+        imageView.image = UIImage(named: category.image)
+        imageView.snp.makeConstraints { make in
+            guard let image = imageView.image else { return }
+            make.width.equalTo(image.size.width / 3)
+            make.height.equalTo(image.size.height / 3)
+        }
+    }
+    
     // MARK: - Private Functions
-    private func configure() {
+    private func makeUI() {
         contentView.backgroundColor = .lightGrey
         
         contentView.addSubview(label)

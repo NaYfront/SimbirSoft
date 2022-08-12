@@ -10,7 +10,7 @@ import SnapKit
 
 class EventCollectionViewCell: UICollectionViewCell {    
     // MARK: - User Interface
-    lazy var mainImageView: UIImageView = {
+    private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -18,7 +18,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var additionalImageView: UIImageView = {
+    private lazy var additionalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -27,7 +27,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
@@ -36,7 +36,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var heartImageView: UIImageView = {
+    private lazy var heartImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -45,7 +45,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
@@ -54,7 +54,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var greenView: UIView = {
+    private lazy var greenView: UIView = {
         let view = UIView()
         view.backgroundColor = .leaf
         view.clipsToBounds = true
@@ -64,9 +64,9 @@ class EventCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var dateView = UIView()
+    private lazy var dateView = UIView()
     
-    lazy var dateImageView: UIImageView = {
+    private lazy var dateImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -75,7 +75,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
@@ -93,6 +93,14 @@ class EventCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Configuration
+    func configure(with event: Event) {
+        mainImageView.image = UIImage(named: event.image)
+        nameLabel.attributedText = .attributeLabel(label: nameLabel, text: event.name)
+        descriptionLabel.attributedText = .attributeLabel(label: descriptionLabel, text: event.description)
+        dateLabel.attributedText = .attributeLabel(label: dateLabel, text: event.date)
     }
     
     // MARK: - Private Functions
