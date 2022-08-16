@@ -12,19 +12,19 @@ extension NSAttributedString {
     static func toAttributedString(attributes: [NSObject], text: String) -> NSAttributedString {
 
         let convertedAttributes = NSAttributedString.toAttributes(attributes: attributes)
-        
-        let attributedString = NSMutableAttributedString(string: text)
-        let range = text.range(of: text)
-        let convertedRange = NSRange(range!, in: text)
-
-        for (key, value) in convertedAttributes {
-            attributedString.addAttribute(key, value: value, range: convertedRange)
-        }
+        let attributedString = NSMutableAttributedString(string: text, attributes: convertedAttributes)
 
         return attributedString
     }
     
-    static func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
+    static func addAttributes(attributes: [NSObject]) -> NSAttributedString {
+        let convertedAttributes = NSAttributedString.toAttributes(attributes: attributes)
+        let attributedString = NSMutableAttributedString(string: "string", attributes: convertedAttributes)
+
+        return attributedString
+    }
+    
+    static func addTextToAttributedLabel(label: UILabel, text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
     }
     

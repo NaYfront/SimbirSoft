@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 class PhoneView: UIView {
-    // MARK: - Private Properties
-    private let event: Event
-    
     // MARK: - User Interface
     lazy var phoneImageView: UIImageView = {
         let imageView = UIImageView()
@@ -26,18 +23,21 @@ class PhoneView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextRegular(size: 15),
                          UIColor.charcoalGrey,
-                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
-            text: event.phoneNumber)
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)])
 
         return label
     }()
     
+    // MARK: - Public Functions
+    func setup(text: String) {
+        phoneLabel.addAttributedText(text: text)
+    }
+    
     // MARK: - Initializers
-    init(event: Event) {
-        self.event = event
+    init() {
         super.init(frame: .zero)
         
         setupUI()

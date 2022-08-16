@@ -9,17 +9,13 @@ import UIKit
 import SnapKit
 
 class InfoView: UIView {
-    // MARK: - Private Properties
-    private let event: Event
-    
     // MARK: - User Interface
-    private lazy var addressView = AddressView(event: event)
-    private lazy var phoneView = PhoneView(event: event)
+    private lazy var addressView = AddressView()
+    private lazy var phoneView = PhoneView()
     private lazy var mailView = MailView()
     
     // MARK: - Initializers
-    init(event: Event) {
-        self.event = event
+    init() {
         super.init(frame: .zero)
         
         setupUI()
@@ -60,5 +56,12 @@ class InfoView: UIView {
             make.height.equalTo(120)
             make.width.equalTo(UIScreen.main.bounds.width)
         }
+    }
+}
+
+extension InfoView {
+    func setup(address: String, phoneNumber: String) {
+        addressView.setup(text: address)
+        phoneView.setup(text: phoneNumber)
     }
 }

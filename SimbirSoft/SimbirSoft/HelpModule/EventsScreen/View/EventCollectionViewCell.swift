@@ -31,11 +31,10 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.officina(size: 21),
                          UIColor.blueGrey,
-                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: 25)],
-            text: "text")
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: 25)])
         
         return label
     }()
@@ -53,11 +52,10 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextRegular(size: 15),
                          UIColor.darkSlateBlue,
-                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)],
-            text: "text")
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)])
         
         return label
     }()
@@ -87,11 +85,10 @@ class EventCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextMedium(size: 11),
                          UIColor.white,
-                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)],
-            text: "text")
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)])
         
         return label
     }()
@@ -110,9 +107,9 @@ class EventCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     func configure(with event: Event) {
         mainImageView.image = UIImage(named: event.image)
-        nameLabel.attributedText = .attributeLabel(label: nameLabel, text: event.name)
-        descriptionLabel.attributedText = .attributeLabel(label: descriptionLabel, text: event.description)
-        dateLabel.attributedText = .attributeLabel(label: dateLabel, text: event.date)
+        nameLabel.attributedText = .addTextToAttributedLabel(label: nameLabel, text: event.name)
+        descriptionLabel.attributedText = .addTextToAttributedLabel(label: descriptionLabel, text: event.description)
+        dateLabel.attributedText = .addTextToAttributedLabel(label: dateLabel, text: event.date)
     }
     
     // MARK: - Private Functions

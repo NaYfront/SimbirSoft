@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 class AddressView: UIView {
-    // MARK: - Properties
-    private let event: Event
-    
     // MARK: - User Interface
     lazy var addressImageView: UIImageView = {
         let imageView = UIImageView()
@@ -26,18 +23,16 @@ class AddressView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextRegular(size: 15),
                          UIColor.charcoalGrey,
-                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
-            text: event.address)
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)])
         
         return label
     }()
     
     // MARK: - Initializers
-    init(event: Event) {
-        self.event = event
+    init() {
         super.init(frame: .zero)
         
         setupUI()
@@ -45,6 +40,11 @@ class AddressView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public Functions
+    func setup(text: String) {
+        addressLabel.addAttributedText(text: text)
     }
     
     // MARK: - Private Functions

@@ -15,6 +15,7 @@
 		394EB1F328AAEA2B001CAACC /* ImageSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394EB1F228AAEA2B001CAACC /* ImageSetView.swift */; };
 		395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */; };
 		3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */; };
+		39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
 		39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */; };
@@ -51,6 +52,7 @@
 		394EB1F228AAEA2B001CAACC /* ImageSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetView.swift; sourceTree = "<group>"; };
 		395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableParagraphStyleExtension.swift; sourceTree = "<group>"; };
+		39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
 		39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				39C29899288D89F50065CCAA /* UIFontExtension.swift */,
 				395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */,
 				3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */,
+				39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */,
 				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
+				39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */,
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
 				3939122D2896DB8B00A89D03 /* DataService.swift in Sources */,
 				39F1DE2228AAD04400523C74 /* AddressView.swift in Sources */,

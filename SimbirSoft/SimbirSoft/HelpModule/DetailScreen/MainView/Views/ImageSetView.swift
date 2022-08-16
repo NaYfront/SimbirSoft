@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 class ImageSetView: UIView {
-    // MARK: - Private Properties
-    private let event: Event
-    
     // MARK: - User Interface
     lazy var smallImageSetView = UIView()
     
@@ -19,7 +16,7 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[0])
+//        imageView.image = UIImage(named: event.detailImages[0])
         
         return imageView
     }()
@@ -28,7 +25,7 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[1])
+//        imageView.image = UIImage(named: event.detailImages[1])
         
         return imageView
     }()
@@ -37,14 +34,13 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: event.detailImages[2])
+//        imageView.image = UIImage(named: event.detailImages[2])
         
         return imageView
     }()
     
     // MARK: - Initializers
-    init(event: Event) {
-        self.event = event
+    init() {
         super.init(frame: .zero)
         
         setupUI()
@@ -52,6 +48,13 @@ class ImageSetView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public Functions
+    func setup(images: [String]) {
+        imageFirst.image = UIImage(named: images[0])
+        imageSecond.image = UIImage(named: images[1])
+        imageThird.image = UIImage(named: images[2])
     }
     
     // MARK: - Private Functions

@@ -10,7 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     // MARK: - Properties
     private let event: Event
-    private lazy var mainView = DetailView(event: self.event)
+    private lazy var mainView = DetailView()
     
     // MARK: - Initializers
     init(event: Event) {
@@ -31,6 +31,7 @@ class DetailViewController: UIViewController {
     }
     
     override func loadView() {
+        mainView.setupViews(event: event)
         view = mainView
     }
     

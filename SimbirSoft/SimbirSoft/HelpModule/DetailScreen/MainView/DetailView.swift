@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 class DetailView: UIView {
-    // MARK: - Private Properties
-    private let event: Event
-    
     // MARK: - User Interface
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -24,20 +21,19 @@ class DetailView: UIView {
     
     private lazy var buttonsView = ButtonsView()
     private lazy var usersView = UsersView()
-    private lazy var dateView = DateView(event: event)
-    private lazy var infoView = InfoView(event: event)
-    private lazy var imageSetView = ImageSetView(event: event)
+    private lazy var dateView = DateView()
+    private lazy var infoView = InfoView()
+    private lazy var imageSetView = ImageSetView()
     private lazy var containerView = UIView()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.officina(size: 21),
                          UIColor.blueGrey,
-                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 25)],
-            text: event.name)
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 25)])
         
         return label
     }()
@@ -46,11 +42,10 @@ class DetailView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextRegular(size: 11),
                          UIColor.charcoalGrey,
-                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 20)],
-            text: event.company)
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: 20)])
         
         return label
     }()
@@ -59,11 +54,10 @@ class DetailView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
 
-        label.attributedText = .toAttributedString(
+        label.attributedText = .addAttributes(
             attributes: [UIFont.sfuitextRegular(size: 15),
                          UIColor.charcoalGrey,
-                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)],
-            text: event.detailDescription)
+                         NSMutableParagraphStyle(alignment: .left, minimumLineLength: nil)])
         
         return label
     }()
@@ -82,8 +76,7 @@ class DetailView: UIView {
     }()
     
     // MARK: - Initializers
-    init(event: Event) {
-        self.event = event
+    init() {
         super.init(frame: .zero)
         
         makeUI()
@@ -168,5 +161,17 @@ class DetailView: UIView {
             make.top.equalTo(siteLabel.snp.bottom).offset(32)
             make.left.bottom.right.equalToSuperview()
         }
+    }
+}
+
+extension DetailView {
+    func setupViews(event: Event) {
+        nameLabel.addAttributedText(text: event.name)
+        companyLabel.addAttributedText(text: event.company)
+        detailDescriptionLabel.addAttributedText(text: event.detailDescription)
+        
+        dateView.setup(text: event.date)
+        infoView.setup(address: event.address, phoneNumber: event.phoneNumber)
+        imageSetView.setup(images: event.detailImages)
     }
 }
