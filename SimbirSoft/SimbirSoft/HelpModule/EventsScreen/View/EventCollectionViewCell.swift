@@ -107,9 +107,9 @@ class EventCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration
     func configure(with event: Event) {
         mainImageView.image = UIImage(named: event.image)
-        nameLabel.attributedText = .addTextToAttributedLabel(label: nameLabel, text: event.name)
-        descriptionLabel.attributedText = .addTextToAttributedLabel(label: descriptionLabel, text: event.description)
-        dateLabel.attributedText = .addTextToAttributedLabel(label: dateLabel, text: event.date)
+        nameLabel.addAttributedText(text: event.name)
+        descriptionLabel.addAttributedText(text: event.description)
+        dateLabel.addAttributedText(text: event.date)
     }
     
     // MARK: - Private Functions

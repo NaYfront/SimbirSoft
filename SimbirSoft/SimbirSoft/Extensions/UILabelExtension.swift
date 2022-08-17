@@ -10,6 +10,6 @@ import UIKit
 
 extension UILabel {
     func addAttributedText(text: String) {
-        self.attributedText = .addTextToAttributedLabel(label: self, text: text)
+        self.attributedText = NSAttributedString(string: text, attributes: self.attributedText?.attributes(at: 0, effectiveRange: nil))
     }
 }
