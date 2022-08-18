@@ -50,8 +50,8 @@ class PhoneView: UIView {
     // MARK: - Private Functions
     
     private func addSubviews() {
-        self.addSubview(phoneImageView)
-        self.addSubview(phoneLabel)
+        addSubview(phoneImageView)
+        addSubview(phoneLabel)
     }
     
     private func setupUI() {

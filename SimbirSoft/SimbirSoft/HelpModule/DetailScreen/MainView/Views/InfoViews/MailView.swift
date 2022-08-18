@@ -59,9 +59,9 @@ class MailView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(mailImageView)
-        self.addSubview(mailFirstLabel)
-        self.addSubview(mailSecondLabel)
+        addSubview(mailImageView)
+        addSubview(mailFirstLabel)
+        addSubview(mailSecondLabel)
     }
     
     private func setupUI() {

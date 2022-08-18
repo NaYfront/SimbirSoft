@@ -12,48 +12,20 @@ class EventsViewController: UIViewController {
     // MARK: - Properties
     private var events: [Event] = []
     private let dataService = DataService()
+    private let categoryName: String
     
-    var categoryName = ""
+    private lazy var mainView = EventsView()
     
-    // MARK: - User Interface
-    private lazy var whiteView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
-    
-    private let indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.startAnimating()
-        indicator.color = .leaf
+    // MARK: - Initializers
+    init(categoryName: String) {
+        self.categoryName = categoryName
         
-        return indicator
-    }()
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private lazy var eventsCollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewFlowLayout()
-    )
-    
-    private lazy var segmentedControl: UISegmentedControl = {
-        let items = ["Текущие", "Завершенные"]
-        
-        let control = UISegmentedControl(items: items)
-        control.layer.borderWidth = 1
-        control.layer.borderColor = UIColor.leaf.cgColor
-        control.selectedSegmentTintColor = .leaf
-        control.selectedSegmentIndex = 0
-        control.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
-            NSAttributedString.Key.foregroundColor: UIColor.leaf
-        ],
-                                       for: .normal)
-        control.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
-            NSAttributedString.Key.foregroundColor: UIColor.white],
-                                       for: .selected)
-        return control
-    }()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -68,49 +40,23 @@ class EventsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func loadView() {
+        view = mainView
+    }
+    
     // MARK: - Configuration
-    private func configure() {
-        view.backgroundColor = .white
-        
-        startActivityIndicator()
-        
+    private func configure() {        
         getData()
         
-        eventsCollectionView.delegate = self
-        eventsCollectionView.dataSource = self
-        eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: "EventCollectionViewCell")
+        mainView.eventsCollectionView.delegate = self
+        mainView.eventsCollectionView.dataSource = self
+        mainView.eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: "EventCollectionViewCell")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     // MARK: - Private Functions
-    private func makeUI() {
-        indicator.stopAnimating()
-        
-        eventsCollectionView.backgroundColor = .lightGrey
-        eventsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        
-        view.addSubview(segmentedControl)
-        segmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.left.right.equalToSuperview().inset(16)
-        }
-        
-        view.addSubview(eventsCollectionView)
-        eventsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(segmentedControl).inset(42)
-            make.right.left.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
-    
-    private func startActivityIndicator() {
-        view.addSubview(indicator)
-        indicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-    }
-    
     private func getData() {
         dataService.getData(category: categoryName, type: Event.self) { [weak self] result in
             guard let self = self else { return }
@@ -119,7 +65,7 @@ class EventsViewController: UIViewController {
                 case .success(let events):
                     self.events = events
                     sleep(1)
-                    self.makeUI()
+                    self.mainView.configure()
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
@@ -135,7 +81,7 @@ extension EventsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = eventsCollectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = mainView.eventsCollectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
         
         let event = events[indexPath.row]
         cell.configure(with: event)
@@ -162,7 +108,7 @@ extension EventsViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension EventsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .cellSize
+        return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -172,11 +118,4 @@ extension EventsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-}
-
-// MARK: - Constants
-private extension CGSize {
-    static let cellSize = { () -> CGSize in
-        return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)
-    }()
 }

@@ -79,7 +79,7 @@ class DetailView: UIView {
     init() {
         super.init(frame: .zero)
         
-        makeUI()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -88,8 +88,8 @@ class DetailView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(scrollView)
-        self.addSubview(buttonsView)
+        addSubview(scrollView)
+        addSubview(buttonsView)
         
         scrollView.addSubview(containerView)
         
@@ -103,8 +103,8 @@ class DetailView: UIView {
         containerView.addSubview(usersView)
     }
     
-    private func makeUI() {
-        self.backgroundColor = .white
+    private func setupUI() {
+        backgroundColor = .white
         
         addSubviews()
         
