@@ -45,9 +45,7 @@ class EventsViewController: UIViewController {
     }
     
     // MARK: - Configuration
-    private func configure() {
-        view.backgroundColor = .white
-        
+    private func configure() {        
         getData()
         
         mainView.eventsCollectionView.delegate = self
@@ -66,6 +64,7 @@ class EventsViewController: UIViewController {
                 switch result {
                 case .success(let events):
                     self.events = events
+                    sleep(1)
                     self.mainView.configure()
                 case .failure(let error):
                     fatalError(error.localizedDescription)
@@ -109,7 +108,7 @@ extension EventsViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension EventsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .cellSize
+        return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -119,11 +118,4 @@ extension EventsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-}
-
-// MARK: - Constants
-private extension CGSize {
-    static let cellSize = { () -> CGSize in
-        return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)
-    }()
 }

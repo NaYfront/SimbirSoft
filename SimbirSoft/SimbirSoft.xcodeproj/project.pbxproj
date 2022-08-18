@@ -12,6 +12,9 @@
 		3939122D2896DB8B00A89D03 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939122C2896DB8B00A89D03 /* DataService.swift */; };
 		3939122F2899551F00A89D03 /* JSONEvents.json in Resources */ = {isa = PBXBuildFile; fileRef = 3939122E2899551F00A89D03 /* JSONEvents.json */; };
 		393C729228AE4B5B004766A0 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C729128AE4B5B004766A0 /* EventsView.swift */; };
+		393C729528AE5B41004766A0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C729428AE5B41004766A0 /* HelpView.swift */; };
+		393C729728AE5E9A004766A0 /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C729628AE5E9A004766A0 /* CGSizeExtension.swift */; };
+		393C729928AE5EC1004766A0 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C729828AE5EC1004766A0 /* CGFloatExtension.swift */; };
 		394EB1F128AAE3CF001CAACC /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394EB1F028AAE3CF001CAACC /* UsersView.swift */; };
 		394EB1F328AAEA2B001CAACC /* ImageSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394EB1F228AAEA2B001CAACC /* ImageSetView.swift */; };
 		395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */; };
@@ -50,6 +53,9 @@
 		3939122C2896DB8B00A89D03 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		3939122E2899551F00A89D03 /* JSONEvents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONEvents.json; sourceTree = "<group>"; };
 		393C729128AE4B5B004766A0 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		393C729428AE5B41004766A0 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		393C729628AE5E9A004766A0 /* CGSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
+		393C729828AE5EC1004766A0 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		394EB1F028AAE3CF001CAACC /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
 		394EB1F228AAEA2B001CAACC /* ImageSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetView.swift; sourceTree = "<group>"; };
 		395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
@@ -148,6 +154,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		393C729328AE5B32004766A0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		39B717A1288D829700DC5E2A /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +217,8 @@
 				395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */,
 				3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */,
 				39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */,
+				393C729628AE5E9A004766A0 /* CGSizeExtension.swift */,
+				393C729828AE5EC1004766A0 /* CGFloatExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,7 +244,8 @@
 		39C2989D288DAE460065CCAA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				39B7BEA62881742D00077A5D /* MainCollectionViewCell.swift */,
+				393C729328AE5B32004766A0 /* Cell */,
+				393C729428AE5B41004766A0 /* HelpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,6 +520,7 @@
 				395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */,
 				39B7BEB028817F4700077A5D /* Category.swift in Sources */,
 				39F1DE1828AA87B300523C74 /* ButtonsView.swift in Sources */,
+				393C729728AE5E9A004766A0 /* CGSizeExtension.swift in Sources */,
 				39B7BEB82881B74300077A5D /* CustomTabBar.swift in Sources */,
 				39F1DE1F28AAD01300523C74 /* InfoView.swift in Sources */,
 				3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */,
@@ -511,8 +529,10 @@
 				39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */,
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
 				3939122D2896DB8B00A89D03 /* DataService.swift in Sources */,
+				393C729928AE5EC1004766A0 /* CGFloatExtension.swift in Sources */,
 				39F1DE2228AAD04400523C74 /* AddressView.swift in Sources */,
 				39C2989A288D89F50065CCAA /* UIFontExtension.swift in Sources */,
+				393C729528AE5B41004766A0 /* HelpView.swift in Sources */,
 				39B7BEA82881742D00077A5D /* MainCollectionViewCell.swift in Sources */,
 				39F1DE2628AAD62C00523C74 /* MailView.swift in Sources */,
 				39C298B1288EAC290065CCAA /* EventCollectionViewCell.swift in Sources */,

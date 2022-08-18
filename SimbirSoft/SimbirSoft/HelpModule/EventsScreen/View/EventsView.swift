@@ -52,6 +52,7 @@ class EventsView: UIView {
     init() {
         super.init(frame: .zero)
         
+        backgroundColor = .white
         startActivityIndicator()
     }
     
@@ -59,7 +60,7 @@ class EventsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public Functions
+    // MARK: - Configuration
     func configure() {
         setupUI()
     }
@@ -71,13 +72,13 @@ class EventsView: UIView {
         eventsCollectionView.backgroundColor = .lightGrey
         eventsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
-        self.addSubview(segmentedControl)
+        addSubview(segmentedControl)
         segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(10)
             make.left.right.equalToSuperview().inset(16)
         }
         
-        self.addSubview(eventsCollectionView)
+        addSubview(eventsCollectionView)
         eventsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(segmentedControl).inset(42)
             make.right.left.bottom.equalTo(self.safeAreaLayoutGuide)
@@ -85,7 +86,7 @@ class EventsView: UIView {
     }
     
     private func startActivityIndicator() {
-        self.addSubview(indicator)
+        addSubview(indicator)
         indicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }

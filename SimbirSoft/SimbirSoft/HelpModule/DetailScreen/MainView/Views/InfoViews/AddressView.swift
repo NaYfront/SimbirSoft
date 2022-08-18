@@ -49,8 +49,8 @@ class AddressView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(addressImageView)
-        self.addSubview(addressLabel)
+        addSubview(addressImageView)
+        addSubview(addressLabel)
     }
     
     private func setupUI() {

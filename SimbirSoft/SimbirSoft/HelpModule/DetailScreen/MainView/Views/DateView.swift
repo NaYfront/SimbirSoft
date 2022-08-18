@@ -49,8 +49,8 @@ class DateView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(dateImageView)
-        self.addSubview(dateLabel)
+        addSubview(dateImageView)
+        addSubview(dateLabel)
     }
     
     private func setupUI() {

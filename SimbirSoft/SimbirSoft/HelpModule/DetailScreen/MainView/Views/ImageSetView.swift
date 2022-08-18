@@ -16,7 +16,6 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-//        imageView.image = UIImage(named: event.detailImages[0])
         
         return imageView
     }()
@@ -25,7 +24,6 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-//        imageView.image = UIImage(named: event.detailImages[1])
         
         return imageView
     }()
@@ -34,7 +32,6 @@ class ImageSetView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-//        imageView.image = UIImage(named: event.detailImages[2])
         
         return imageView
     }()
@@ -59,8 +56,8 @@ class ImageSetView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(imageFirst)
-        self.addSubview(smallImageSetView)
+        addSubview(imageFirst)
+        addSubview(smallImageSetView)
         smallImageSetView.addSubview(imageSecond)
         smallImageSetView.addSubview(imageThird)
     }

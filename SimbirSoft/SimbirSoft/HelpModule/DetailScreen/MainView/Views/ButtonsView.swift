@@ -22,8 +22,8 @@ class ButtonsView: UIView {
     
     // MARK: - Private Functions
     private func setupUI() {
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.whiteTwo.cgColor
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.whiteTwo.cgColor
         
         let images = [#imageLiteral(resourceName: "shirt"), #imageLiteral(resourceName: "hands"), #imageLiteral(resourceName: "tools"), #imageLiteral(resourceName: "coins")]
         let strings = ["Помочь вещами", "Стать волонтером", "Проф. помощь", "Помочь деньгами"]
@@ -44,7 +44,7 @@ class ButtonsView: UIView {
                                       for: .normal)
             button.setImage(images[index], for: .normal)
             
-            self.addSubview(button)
+            addSubview(button)
             button.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.width.equalTo(66)
@@ -66,7 +66,7 @@ class ButtonsView: UIView {
                 let imageView = UIImageView()
                 imageView.image = #imageLiteral(resourceName: "separator")
                 
-                self.addSubview(imageView)
+                addSubview(imageView)
                 imageView.snp.makeConstraints { make in
                     make.height.equalTo(70)
                     make.width.equalTo(1)

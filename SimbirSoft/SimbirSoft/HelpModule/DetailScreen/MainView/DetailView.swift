@@ -88,8 +88,8 @@ class DetailView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(scrollView)
-        self.addSubview(buttonsView)
+        addSubview(scrollView)
+        addSubview(buttonsView)
         
         scrollView.addSubview(containerView)
         
@@ -104,7 +104,7 @@ class DetailView: UIView {
     }
     
     private func setupUI() {
-        self.backgroundColor = .white
+        backgroundColor = .white
         
         addSubviews()
         

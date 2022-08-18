@@ -37,8 +37,8 @@ class UsersView: UIView {
     
     // MARK: - Private Functions
     private func addSubviews() {
-        self.addSubview(usersLabel)
-        self.addSubview(usersPhotosView)
+        addSubview(usersLabel)
+        addSubview(usersPhotosView)
     }
     
     private func setupUI() {

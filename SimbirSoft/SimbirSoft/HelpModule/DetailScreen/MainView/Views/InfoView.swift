@@ -26,9 +26,9 @@ class InfoView: UIView {
     }
     
     private func addSubviews() {
-        self.addSubview(addressView)
-        self.addSubview(phoneView)
-        self.addSubview(mailView)
+        addSubview(addressView)
+        addSubview(phoneView)
+        addSubview(mailView)
     }
     
     private func setupUI() {
