@@ -9,10 +9,13 @@ import SnapKit
 import UIKit
 
 class EventsViewController: UIViewController {
-    var events: [Event] = []
-    var categoryName = ""
-    let dataService = DataService()
+    // MARK: - Properties
+    private var events: [Event] = []
+    private let dataService = DataService()
     
+    var categoryName = ""
+    
+    // MARK: - User Interface
     private lazy var whiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -40,11 +43,19 @@ class EventsViewController: UIViewController {
         control.layer.borderColor = UIColor.leaf.cgColor
         control.selectedSegmentTintColor = .leaf
         control.selectedSegmentIndex = 0
-        control.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13), NSAttributedString.Key.foregroundColor: UIColor.leaf], for: .normal)
-        control.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13), NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        control.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.leaf
+        ],
+                                       for: .normal)
+        control.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.sfuitextMedium(size: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.white],
+                                       for: .selected)
         return control
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,21 +68,23 @@ class EventsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - Configuration
     private func configure() {
         view.backgroundColor = .white
         
         startActivityIndicator()
         
-        getEvents()
+        getData()
         
         eventsCollectionView.delegate = self
         eventsCollectionView.dataSource = self
-        eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.identifier)
+        eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: "EventCollectionViewCell")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
+    // MARK: - Private Functions
     private func makeUI() {
         indicator.stopAnimating()
         
@@ -98,12 +111,8 @@ class EventsViewController: UIViewController {
         }
     }
     
-    private func attributeLabel(label: UILabel, text: String) -> NSAttributedString {
-        return NSAttributedString(string: text, attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil))
-    }
-    
-    private func getEvents() {
-        dataService.getEvents(category: categoryName) { [weak self] result in
+    private func getData() {
+        dataService.getData(category: categoryName, type: Event.self) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
@@ -119,37 +128,24 @@ class EventsViewController: UIViewController {
     }
 }
 
-extension EventsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource
+extension EventsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return events.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = eventsCollectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.identifier, for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = eventsCollectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.mainImageView.image = UIImage(named: events[indexPath.row].image)
-        
-        cell.nameLabel.attributedText = attributeLabel(label: cell.nameLabel, text: events[indexPath.row].name)
-        
-        cell.descriptionLabel.attributedText = attributeLabel(label: cell.descriptionLabel, text: events[indexPath.row].description)
-        
-        cell.dateLabel.attributedText = attributeLabel(label: cell.dateLabel, text: events[indexPath.row].date)
+        let event = events[indexPath.row]
+        cell.configure(with: event)
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .cellSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
+}
+
+// MARK: - UICollectionViewDelegate
+extension EventsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController(event: events[indexPath.row])
         
@@ -163,6 +159,22 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+extension EventsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
+
+// MARK: - Constants
 private extension CGSize {
     static let cellSize = { () -> CGSize in
         return CGSize(width: UIScreen.main.bounds.width - 16, height: 413)

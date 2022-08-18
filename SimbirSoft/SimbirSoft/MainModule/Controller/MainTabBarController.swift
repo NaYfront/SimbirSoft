@@ -8,6 +8,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    // MARK: - User Interface
     private lazy var middleButton: UIButton = {
         let middleButton = UIButton()
         middleButton.layer.cornerRadius = .middleButtonDiameter / 2
@@ -27,6 +28,7 @@ class MainTabBarController: UITabBarController {
         return heartImageView
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,31 +36,7 @@ class MainTabBarController: UITabBarController {
         configure()
     }
     
-    private func makeUI() {
-        setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
-
-        tabBar.tintColor = .leaf
-
-        tabBar.addSubview(middleButton)
-        middleButton.addSubview(heartImageView)
-
-        NSLayoutConstraint.activate([
-            middleButton.heightAnchor.constraint(equalToConstant: .middleButtonDiameter),
-            middleButton.widthAnchor.constraint(equalToConstant: .middleButtonDiameter),
-            
-            middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
-        ])
-
-        NSLayoutConstraint.activate([
-            heartImageView.heightAnchor.constraint(equalToConstant: 15),
-            heartImageView.widthAnchor.constraint(equalToConstant: 18),
-            
-            heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
-            heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
-        ])
-    }
-    
+    // MARK: - Configuration
     private func configure() {
         let firstVC = UIViewController()
         firstVC.tabBarItem.title = "Новости"
@@ -85,6 +63,32 @@ class MainTabBarController: UITabBarController {
         self.selectedIndex = 2
     }
     
+    // MARK: - Private Functions
+    private func makeUI() {
+        setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
+
+        tabBar.tintColor = .leaf
+
+        tabBar.addSubview(middleButton)
+        middleButton.addSubview(heartImageView)
+
+        NSLayoutConstraint.activate([
+            middleButton.heightAnchor.constraint(equalToConstant: .middleButtonDiameter),
+            middleButton.widthAnchor.constraint(equalToConstant: .middleButtonDiameter),
+            
+            middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
+            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
+        ])
+
+        NSLayoutConstraint.activate([
+            heartImageView.heightAnchor.constraint(equalToConstant: 15),
+            heartImageView.widthAnchor.constraint(equalToConstant: 18),
+            
+            heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
+            heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
+        ])
+    }
+    
     @objc
     private func didPressMiddleButton() {
         selectedIndex = 2
@@ -92,6 +96,7 @@ class MainTabBarController: UITabBarController {
     }
 }
 
+// MARK: - UITabBarControllerDelegate
 extension MainTabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let selectedIndex = self.tabBar.items?.firstIndex(of: item)
@@ -103,6 +108,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
 }
 
+// MARK: - Constants
 private extension CGFloat {
     static let middleButtonDiameter: CGFloat = 42
 }

@@ -8,10 +8,9 @@
 import UIKit
 import SnapKit
 
-class EventCollectionViewCell: UICollectionViewCell {
-    static let identifier = "EventCollectionViewCell"
-    
-    lazy var mainImageView: UIImageView = {
+class EventCollectionViewCell: UICollectionViewCell {    
+    // MARK: - User Interface
+    private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -19,7 +18,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var additionalImageView: UIImageView = {
+    private lazy var additionalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -28,16 +27,19 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.officina(size: 21), UIColor.blueGrey, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: 25)], text: "text")
+        label.attributedText = .addAttributes(
+            attributes: [UIFont.officina(size: 21),
+                         UIColor.blueGrey,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: 25)])
         
         return label
     }()
     
-    lazy var heartImageView: UIImageView = {
+    private lazy var heartImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -46,16 +48,19 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextRegular(size: 15), UIColor.darkSlateBlue, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
+        label.attributedText = .addAttributes(
+            attributes: [UIFont.sfuitextRegular(size: 15),
+                         UIColor.darkSlateBlue,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)])
         
         return label
     }()
     
-    lazy var greenView: UIView = {
+    private lazy var greenView: UIView = {
         let view = UIView()
         view.backgroundColor = .leaf
         view.clipsToBounds = true
@@ -65,9 +70,9 @@ class EventCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var dateView = UIView()
+    private lazy var dateView = UIView()
     
-    lazy var dateImageView: UIImageView = {
+    private lazy var dateImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -76,15 +81,19 @@ class EventCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         
-        label.attributedText = .toAttributedString(attributes: [UIFont.sfuitextMedium(size: 11), UIColor.white, NSMutableParagraphStyle(alignment: .center, minimumLineLenght: nil)], text: "text")
+        label.attributedText = .addAttributes(
+            attributes: [UIFont.sfuitextMedium(size: 11),
+                         UIColor.white,
+                         NSMutableParagraphStyle(alignment: .center, minimumLineLength: nil)])
         
         return label
     }()
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -95,6 +104,15 @@ class EventCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration
+    func configure(with event: Event) {
+        mainImageView.image = UIImage(named: event.image)
+        nameLabel.addAttributedText(text: event.name)
+        descriptionLabel.addAttributedText(text: event.description)
+        dateLabel.addAttributedText(text: event.date)
+    }
+    
+    // MARK: - Private Functions
     private func makeUI() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 5
@@ -172,6 +190,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Constants
 private extension CGFloat {
     static let mainImageWidth = UIScreen.main.bounds.width - 24
     static let mainImageHeight = 231
