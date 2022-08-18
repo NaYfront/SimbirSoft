@@ -120,8 +120,7 @@ extension HelpViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension HelpViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let eventsVC = EventsViewController()
-        eventsVC.categoryName = categories[indexPath.row].name
+        let eventsVC = EventsViewController(categoryName: categories[indexPath.row].name)
         eventsVC.navigationItem.title = categories[indexPath.row].name
         
         self.navigationController?.pushViewController(eventsVC, animated: true)
