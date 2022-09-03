@@ -18,6 +18,7 @@
 		394EB1F128AAE3CF001CAACC /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394EB1F028AAE3CF001CAACC /* UsersView.swift */; };
 		394EB1F328AAEA2B001CAACC /* ImageSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394EB1F228AAEA2B001CAACC /* ImageSetView.swift */; };
 		395B27A22893D51B00C99B84 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */; };
+		3972CA7B28C3749000450EE5 /* SimbirSoft.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3972CA7928C3749000450EE5 /* SimbirSoft.xcdatamodeld */; };
 		3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */; };
 		39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
@@ -59,6 +60,7 @@
 		394EB1F028AAE3CF001CAACC /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
 		394EB1F228AAEA2B001CAACC /* ImageSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetView.swift; sourceTree = "<group>"; };
 		395B27A12893D51B00C99B84 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		3972CA7A28C3749000450EE5 /* SimbirSoft.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimbirSoft.xcdatamodel; sourceTree = "<group>"; };
 		3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableParagraphStyleExtension.swift; sourceTree = "<group>"; };
 		39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				39F5D504287F32750037E660 /* Info.plist */,
 				39F5D4FF287F32750037E660 /* Assets.xcassets */,
 				39F5D501287F32750037E660 /* LaunchScreen.storyboard */,
+				3972CA7928C3749000450EE5 /* SimbirSoft.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
 				3939122D2896DB8B00A89D03 /* DataService.swift in Sources */,
 				393C729928AE5EC1004766A0 /* CGFloatExtension.swift in Sources */,
+				3972CA7B28C3749000450EE5 /* SimbirSoft.xcdatamodeld in Sources */,
 				39F1DE2228AAD04400523C74 /* AddressView.swift in Sources */,
 				39C2989A288D89F50065CCAA /* UIFontExtension.swift in Sources */,
 				393C729528AE5B41004766A0 /* HelpView.swift in Sources */,
@@ -754,6 +758,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3972CA7928C3749000450EE5 /* SimbirSoft.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3972CA7A28C3749000450EE5 /* SimbirSoft.xcdatamodel */,
+			);
+			currentVersion = 3972CA7A28C3749000450EE5 /* SimbirSoft.xcdatamodel */;
+			path = SimbirSoft.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 39F5D4EB287F32740037E660 /* Project object */;
 }
