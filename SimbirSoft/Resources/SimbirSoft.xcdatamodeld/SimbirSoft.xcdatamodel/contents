@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="CategoryEntity" representedClassName=".CategoryEntity" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="event" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventEntity" inverseName="category" inverseEntity="EventEntity"/>
+    </entity>
+    <entity name="EventEntity" representedClassName=".EventEntity" syncable="YES">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="categoryName" attributeType="String"/>
+        <attribute name="company" attributeType="String"/>
+        <attribute name="date" attributeType="String"/>
+        <attribute name="detailDescription" attributeType="String"/>
+        <attribute name="detailImages" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="eventDescription" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="event" inverseEntity="CategoryEntity"/>
+    </entity>
+    <elements>
+        <element name="CategoryEntity" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="EventEntity" positionX="-49.60546875" positionY="-349.01171875" width="128" height="209"/>
+    </elements>
 </model>

@@ -12,4 +12,11 @@ struct Category: Decodable {
     var id: Int
     var name: String
     var image: String
+    var events: [Event] = []
+    
+    init(entity: CategoryEntity) {
+        id = Int(entity.id)
+        name = entity.name ?? "Дети"
+        image = entity.image ?? "children"
+    }
 }

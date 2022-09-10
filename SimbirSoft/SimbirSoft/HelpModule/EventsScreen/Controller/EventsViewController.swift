@@ -11,7 +11,6 @@ import UIKit
 class EventsViewController: UIViewController {
     // MARK: - Properties
     private var events: [Event] = []
-    private let dataService = DataService()
     private let categoryName: String
     
     private lazy var mainView = EventsView()
@@ -45,7 +44,7 @@ class EventsViewController: UIViewController {
     }
     
     // MARK: - Configuration
-    private func configure() {        
+    private func configure() {
         getData()
         
         mainView.eventsCollectionView.delegate = self
@@ -58,17 +57,11 @@ class EventsViewController: UIViewController {
     
     // MARK: - Private Functions
     private func getData() {
-        dataService.getData(category: categoryName, type: Event.self) { [weak self] result in
-            guard let self = self else { return }
+        DataStoreService.shared.getEvents(categoryName: categoryName) { events in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let events):
-                    self.events = events
-                    sleep(1)
-                    self.mainView.configure()
-                case .failure(let error):
-                    fatalError(error.localizedDescription)
-                }
+                self.events = events
+                sleep(1)
+                self.mainView.configure()
             }
         }
     }

@@ -11,7 +11,6 @@ import UIKit
 class HelpViewController: UIViewController {
     // MARK: - Properties
     private var categories: [Category] = []
-    private let dataService = DataService()
     private let mainView = HelpView()
     
     // MARK: - Life Cycle
@@ -27,9 +26,9 @@ class HelpViewController: UIViewController {
     
     // MARK: - Configuration
     private func configure() {
-        self.navigationItem.title = "Помочь"
-        
         getData()
+        
+        self.navigationItem.title = "Помочь"
         
         mainView.mainCollectionView.delegate = self
         mainView.mainCollectionView.dataSource = self
@@ -40,18 +39,13 @@ class HelpViewController: UIViewController {
     }
     
     // MARK: - Private Functions
+    
     private func getData() {
-        dataService.getData(category: nil, type: Category.self) { [weak self] result in
-            guard let self = self else { return }
+        DataStoreService.shared.getCategories { categories in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let categories):
-                    self.categories = categories
-                    sleep(1)
-                    self.mainView.configure()
-                case .failure(let error):
-                    fatalError(error.localizedDescription)
-                }
+                self.categories = categories
+                sleep(1)
+                self.mainView.configure()
             }
         }
     }
