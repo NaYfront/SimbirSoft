@@ -41,7 +41,8 @@ class HelpViewController: UIViewController {
     // MARK: - Private Functions
     
     private func getData() {
-        DataStoreService.shared.getCategories { categories in
+        DataStoreService.shared.getData(type: Category.self, categoryName: nil) { [weak self] categories in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.categories = categories
                 sleep(1)

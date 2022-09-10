@@ -44,67 +44,51 @@ class DataStoreService {
     
     // MARK: - Public Functions
     
-    func getCategories(completion: @escaping ([Category]) -> Void) {
-        var categories: [Category] = []
-        
+    func getData<T: Decodable>(type: T.Type, categoryName: String?, completion: @escaping ([T]) -> Void) {
         isDbFilled { result in
             if result {
-                let fetchRequest: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
+                let entityName: String = {
+                    if type == Category.self {
+                        return "CategoryEntity"
+                    } else {
+                        return "EventEntity"
+                    }
+                }()
                 
-                var fetchedCategories: [CategoryEntity] = []
+                var fetchedData: [Any] = {
+                    if type == Category.self {
+                        let data: [CategoryEntity] = []
+                        return data
+                    } else {
+                        let data: [EventEntity] = []
+                        return data
+                    }
+                }()
                 
                 do {
-                    fetchedCategories = try self.viewContext.fetch(fetchRequest)
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                    fetchedData = try self.viewContext.fetch(fetchRequest)
                 } catch let error {
                     print(error.localizedDescription)
                 }
                 
-                for fetchedCategory in fetchedCategories {
-                    categories.append(Category(entity: fetchedCategory))
+                var data: [Decodable] = []
+                // swiftlint:disable force_cast
+                for fetchedItem in fetchedData {
+                    if type == Category.self {
+                        data.append(Category(entity: fetchedItem as! CategoryEntity))
+                    } else {
+                        if (fetchedItem as! EventEntity).category?.name == categoryName {
+                            data.append(Event(entity: fetchedItem as! EventEntity))
+                        }
+                    }
                 }
                 
-                completion(categories)
+                completion(data as! [T])
+                // swiftlint:enable force_cast
             }
         }
     }
-    
-    func getEvents(categoryName: String, completion: @escaping ([Event]) -> Void) {
-        var events: [Event] = []
-        
-        isDbFilled { result in
-            if result {
-                let fetchRequest: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
-                
-                var fetchedEvents: [EventEntity] = []
-                
-                do {
-                    fetchedEvents = try self.viewContext.fetch(fetchRequest)
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-                
-                for fetchedEvent in fetchedEvents
-                where fetchedEvent.category?.name == categoryName {
-                    events.append(Event(entity: fetchedEvent))
-                }
-                
-                completion(events)
-            }
-        }
-    }
-    
-//    func getData<T: Decodable>(type: T.Type) -> [T] {
-//        let managedObject: NSManagedObject = CategoryEntity
-//
-//        if T.Type.self == Category.self {
-//            managedObject = CategoryEntity
-//        } else {
-//            managedObject = EventEntity
-//        }
-//
-//        let fetchRequest: NSFetchRequest<managedO> = CategoryEntity.fetchRequest()
-//
-//    }
     
     // MARK: - Private Functions
     
@@ -132,10 +116,9 @@ class DataStoreService {
                 eventEntity.detailDescription = event.detailDescription
                 eventEntity.category = categoryEntity
                 
+                saveContext()
             }
         }
-        
-        saveContext()
     }
     
     private func getDataFromDataService(completion: @escaping (Bool) -> Void) {

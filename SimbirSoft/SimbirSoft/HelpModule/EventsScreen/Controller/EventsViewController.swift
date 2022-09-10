@@ -57,7 +57,8 @@ class EventsViewController: UIViewController {
     
     // MARK: - Private Functions
     private func getData() {
-        DataStoreService.shared.getEvents(categoryName: categoryName) { events in
+        DataStoreService.shared.getData(type: Event.self, categoryName: categoryName) { [weak self] events in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.events = events
                 sleep(1)
