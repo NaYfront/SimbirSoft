@@ -8,11 +8,11 @@
 import Foundation
 
 protocol DataServiceProtocol {
-    func getData<T: Decodable>(category: String?, type: T.Type, completion: @escaping (Result<[T], Error>) -> Void)
+    func getData<T: Decodable>(type: T.Type, completion: @escaping (Result<[T], Error>) -> Void)
 }
 
 class DataService: DataServiceProtocol {
-    func getData<T: Decodable>(category: String?, type: T.Type, completion: @escaping (Result<[T], Error>) -> Void) {
+    func getData<T: Decodable>(type: T.Type, completion: @escaping (Result<[T], Error>) -> Void) {
         DispatchQueue.global(qos: .background).async {
             var resource = "JSON"
 
@@ -28,22 +28,39 @@ class DataService: DataServiceProtocol {
                 let data = try Data(contentsOf: path)
                 let receivedData = try JSONDecoder().decode([T].self, from: data)
                 
-                if category != nil && type == Event.self {
-                    var filteredData: [T] = []
-                    receivedData.forEach { item in
-                        // swiftlint:disable force_cast
-                        if (item as! Event).categoryName == category {
-                            filteredData.append(item)
-                        }
-                        // swiftlint:enable force_cast
-                    }
-                    
-                    completion(.success(filteredData))
-                } else {
-                    completion(.success(receivedData))
-                }
+                completion(.success(receivedData))
             } catch {
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func getAllData(completion: @escaping (Result<[Category], Error>) -> Void) {
+        getData(type: Category.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(var categories):
+                self.getData(type: Event.self) { result in
+                    switch result {
+                    case .success(let events):
+                        var array: [Category] = []
+                        for index in 0...categories.count - 1 {
+                            for event in events {
+                                if categories[index].name == event.categoryName {
+                                    categories[index].events.append(event)
+                                }
+                            }
+                            
+                            array.append(categories[index])
+                        }
+                        
+                        completion(.success(array))
+                    case .failure(let error):
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                fatalError(error.localizedDescription)
             }
         }
     }
