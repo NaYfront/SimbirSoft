@@ -11,8 +11,8 @@ import CoreData
 class DataStoreService {
     // MARK: - Properties
     
-    private let dataService = DataService()
-    static let shared = DataStoreService()
+    private let dataService: DataServiceProtocol
+    static let shared = DataStoreService(dataService: DataService())
         
     // MARK: - Core Data stack
 
@@ -40,6 +40,11 @@ class DataStoreService {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    // MARK: - Initializers
+    init(dataService: DataServiceProtocol) {
+        self.dataService = dataService
     }
     
     // MARK: - Public Functions
@@ -121,6 +126,22 @@ class DataStoreService {
         }
     }
     
+    private func getDataFromNetworkService(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.getData { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.global(qos: .background).async {
+                switch result {
+                case .success(let array):
+                    self.saveEntities(categories: array)
+                    completion(true)
+                case .failure(let error):
+                    completion(false)
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     private func getDataFromDataService(completion: @escaping (Bool) -> Void) {
         dataService.getAllData { [weak self] result in
             guard let self = self else { return }
@@ -142,7 +163,7 @@ class DataStoreService {
         
         do {
             if try viewContext.fetch(fetchRequest).count == 0 {
-                getDataFromDataService { result in
+                getDataFromNetworkService { result in
                     completion(result)
                 }
             } else {

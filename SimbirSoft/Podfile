@@ -9,4 +9,9 @@ target 'SimbirSoft' do
 pod 'Alamofire'
 pod 'SwiftLint'
 pod 'SnapKit'
+pod 'FirebaseAnalytics'
+pod 'FirebaseStorage'
+pod 'FirebaseDatabase'
+pod 'FirebaseFirestore'
+pod 'FirebaseDatabase'
 end

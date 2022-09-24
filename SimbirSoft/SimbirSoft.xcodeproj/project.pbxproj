@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391F0B9628D8A3AB00BA3D73 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F0B9528D8A3AB00BA3D73 /* NetworkService.swift */; };
 		3928634B2892AB99002E406D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928634A2892AB99002E406D /* DetailViewController.swift */; };
 		3939122B2896D1E700A89D03 /* JSONCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 3939122A2896D1E700A89D03 /* JSONCategories.json */; };
 		3939122D2896DB8B00A89D03 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939122C2896DB8B00A89D03 /* DataService.swift */; };
@@ -21,6 +22,7 @@
 		3972CA7B28C3749000450EE5 /* SimbirSoft.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3972CA7928C3749000450EE5 /* SimbirSoft.xcdatamodeld */; };
 		3972CA9E28C385BA00450EE5 /* DataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3972CA9D28C385BA00450EE5 /* DataStoreService.swift */; };
 		3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */; };
+		39A4023928D875F800AE0F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A4023828D875F800AE0F18 /* GoogleService-Info.plist */; };
 		39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */; };
 		39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */; };
 		39B7BE942880517D00077A5D /* sf-ui-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */; };
@@ -54,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		391F0B9528D8A3AB00BA3D73 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3928634A2892AB99002E406D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3939122A2896D1E700A89D03 /* JSONCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONCategories.json; sourceTree = "<group>"; };
 		3939122C2896DB8B00A89D03 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		3972CA7A28C3749000450EE5 /* SimbirSoft.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimbirSoft.xcdatamodel; sourceTree = "<group>"; };
 		3972CA9D28C385BA00450EE5 /* DataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreService.swift; sourceTree = "<group>"; };
 		3983157D289543FA00489042 /* NSMutableParagraphStyleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableParagraphStyleExtension.swift; sourceTree = "<group>"; };
+		39A4023828D875F800AE0F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39B3FE1D28AC43A4006C63ED /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		39B7BE912880517D00077A5D /* Officinasansextraboldscc.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Officinasansextraboldscc.otf; sourceTree = "<group>"; };
 		39B7BE922880517D00077A5D /* sf-ui-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-text-regular.ttf"; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			children = (
 				3939122C2896DB8B00A89D03 /* DataService.swift */,
 				3972CA9D28C385BA00450EE5 /* DataStoreService.swift */,
+				391F0B9528D8A3AB00BA3D73 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				39F5D4FF287F32750037E660 /* Assets.xcassets */,
 				39F5D501287F32750037E660 /* LaunchScreen.storyboard */,
 				3972CA7928C3749000450EE5 /* SimbirSoft.xcdatamodeld */,
+				39A4023828D875F800AE0F18 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39F5D503287F32750037E660 /* LaunchScreen.storyboard in Resources */,
+				39A4023928D875F800AE0F18 /* GoogleService-Info.plist in Resources */,
 				3939122B2896D1E700A89D03 /* JSONCategories.json in Resources */,
 				39B7BE932880517D00077A5D /* Officinasansextraboldscc.otf in Resources */,
 				3939122F2899551F00A89D03 /* JSONEvents.json in Resources */,
@@ -552,6 +559,7 @@
 				39F1DE1F28AAD01300523C74 /* InfoView.swift in Sources */,
 				3983157E289543FA00489042 /* NSMutableParagraphStyleExtension.swift in Sources */,
 				39B7BEB62881B4A300077A5D /* MainTabBarController.swift in Sources */,
+				391F0B9628D8A3AB00BA3D73 /* NetworkService.swift in Sources */,
 				39F5D4F7287F32740037E660 /* AppDelegate.swift in Sources */,
 				39B3FE1E28AC43A4006C63ED /* UILabelExtension.swift in Sources */,
 				39C29898288D890E0065CCAA /* UIColorExtension.swift in Sources */,
