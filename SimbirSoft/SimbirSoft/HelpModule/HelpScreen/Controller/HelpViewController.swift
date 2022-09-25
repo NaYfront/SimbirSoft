@@ -45,7 +45,6 @@ class HelpViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.categories = categories
-                sleep(1)
                 self.mainView.configure()
             }
         }

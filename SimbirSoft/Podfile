@@ -12,6 +12,4 @@ pod 'SnapKit'
 pod 'FirebaseAnalytics'
 pod 'FirebaseStorage'
 pod 'FirebaseDatabase'
-pod 'FirebaseFirestore'
-pod 'FirebaseDatabase'
 end

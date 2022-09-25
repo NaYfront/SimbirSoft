@@ -127,7 +127,7 @@ class DataStoreService {
     }
     
     private func getDataFromNetworkService(completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.getData { [weak self] result in
+        NetworkService.shared.getAllData { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.global(qos: .background).async {
                 switch result {
@@ -136,7 +136,7 @@ class DataStoreService {
                     completion(true)
                 case .failure(let error):
                     completion(false)
-                    fatalError(error.localizedDescription)
+                    print(error)
                 }
             }
         }
@@ -163,8 +163,15 @@ class DataStoreService {
         
         do {
             if try viewContext.fetch(fetchRequest).count == 0 {
-                getDataFromNetworkService { result in
-                    completion(result)
+                getDataFromNetworkService { [weak self] result in
+                    if result {
+                        completion(result)
+                    } else {
+                        guard let self = self else { return }
+                        self.getDataFromDataService { res in
+                            completion(res)
+                        }
+                    }
                 }
             } else {
                 completion(true)

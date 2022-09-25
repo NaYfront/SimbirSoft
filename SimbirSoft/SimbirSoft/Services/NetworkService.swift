@@ -15,45 +15,54 @@ class NetworkService {
     
     static let shared = NetworkService()
     
-    func getData(completion: @escaping (Result<[Category], Error>) -> Void) {
-        let categoriesPath = URL(string: "gs://simbirsoft-3e7a4.appspot.com/jsons/JSONCategories.json")!
-        let eventsPath = URL(string: "gs://simbirsoft-3e7a4.appspot.com/jsons/JSONEvents.json")!
-        
-        URLSession.shared.dataTask(with: categoriesPath) { (categories, _, error) in
-            do {
-                if let categories = categories {
-                    var receivedCategories = try JSONDecoder().decode([Category].self, from: categories)
-                    
-                    URLSession.shared.dataTask(with: eventsPath) { (events, _, error) in
-                        do {
-                            if let events = events {
-                                let receivedEvents = try JSONDecoder().decode([Event].self, from: events)
-                                
-                                var array: [Category] = []
-                                for index in 0...receivedCategories.count - 1 {
-                                    for event in receivedEvents {
-                                        if receivedCategories[index].name == event.categoryName {
-                                            receivedCategories[index].events.append(event)
-                                        }
-                                    }
-                                    
-                                    array.append(receivedCategories[index])
-                                }
-                                
-                                completion(.success(array))
-                            } else {
-                                print("No Data")
-                            }
-                        } catch {
-                            completion(.failure(error))
-                        }
-                    }.resume()
-                } else {
-                    print("No Data")
+    // MARK: - Functions
+    func getData<T: Decodable>(url: URL, type: T.Type, completion: @escaping (Result<[T], Error>) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            URLSession.shared.dataTask(with: url) { (data, _, error) in
+                do {
+                    if let data = data {
+                        let receivedData = try JSONDecoder().decode([T].self, from: data)
+                        completion(.success(receivedData))
+                    } else {
+                        completion(.failure(error!))
+                    }
+                } catch {
+                    completion(.failure(error))
                 }
-            } catch {
+            }.resume()
+        }
+    }
+    
+    func getAllData(completion: @escaping (Result<[Category], Error>) -> Void) {
+        let categoriesURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/simbirsoft-3e7a4.appspot.com/o/jsons%2FJSONCategories.json?alt=media&token=086d7784-f235-4cf7-a4f9-5a875f802cfb")!
+        let eventsURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/simbirsoft-3e7a4.appspot.com/o/jsons%2FJSONEvents.json?alt=media&token=d9705ff6-3ce9-4ee0-9ae6-2ad556e66713")!
+        
+        getData(url: categoriesURL, type: Category.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(var categories):
+                self.getData(url: eventsURL, type: Event.self) { result in
+                    switch result {
+                    case .success(let events):
+                        var array: [Category] = []
+                        for index in 0...categories.count - 1 {
+                            for event in events {
+                                if categories[index].name == event.categoryName {
+                                    categories[index].events.append(event)
+                                }
+                            }
+                            
+                            array.append(categories[index])
+                        }
+                        
+                        completion(.success(array))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
                 completion(.failure(error))
             }
-        }.resume()
+        }
     }
 }
