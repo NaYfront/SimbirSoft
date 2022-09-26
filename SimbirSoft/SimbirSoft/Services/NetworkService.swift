@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseCore
 import FirebaseStorage
+import Alamofire
 
 class NetworkService {
     // MARK: - Properties
@@ -34,28 +35,14 @@ class NetworkService {
     }
     
     func getAllData(completion: @escaping (Result<[Category], Error>) -> Void) {
-        let categoriesURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/simbirsoft-3e7a4.appspot.com/o/jsons%2FJSONCategories.json?alt=media&token=086d7784-f235-4cf7-a4f9-5a875f802cfb")!
-        let eventsURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/simbirsoft-3e7a4.appspot.com/o/jsons%2FJSONEvents.json?alt=media&token=d9705ff6-3ce9-4ee0-9ae6-2ad556e66713")!
-        
-        getData(url: categoriesURL, type: Category.self) { [weak self] result in
+        getData(url: URL.categoriesURL, type: Category.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(var categories):
-                self.getData(url: eventsURL, type: Event.self) { result in
+            case .success(let categories):
+                self.getData(url: URL.eventsURL, type: Event.self) { result in
                     switch result {
                     case .success(let events):
-                        var array: [Category] = []
-                        for index in 0...categories.count - 1 {
-                            for event in events {
-                                if categories[index].name == event.categoryName {
-                                    categories[index].events.append(event)
-                                }
-                            }
-                            
-                            array.append(categories[index])
-                        }
-                        
-                        completion(.success(array))
+                        completion(.success(self.makeRightArray(categories: categories, events: events)))
                     case .failure(let error):
                         completion(.failure(error))
                     }
@@ -64,5 +51,54 @@ class NetworkService {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func getDataAlamofire<T: Decodable>(url: URL, type: T.Type, completion: @escaping (Result<[T], Error>) -> Void) {
+        AF.request(url).response { response in
+            do {
+                guard let data = response.value else { return }
+                
+                let receivedData = try JSONDecoder().decode([T].self, from: data!)
+                
+                completion(.success(receivedData))
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func getAllDataAlamofire(completion: @escaping (Result<[Category], Error>) -> Void) {
+        getDataAlamofire(url: URL.categoriesURL, type: Category.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let categories):
+                self.getDataAlamofire(url: URL.eventsURL, type: Event.self) { result in
+                    switch result {
+                    case .success(let events):
+                        completion(.success(self.makeRightArray(categories: categories, events: events)))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Private Functions
+    
+    private func makeRightArray(categories: [Category], events: [Event]) -> [Category] {
+        var array = categories
+        
+        for index in 0...array.count - 1 {
+            for event in events {
+                if array[index].name == event.categoryName {
+                    array[index].events.append(event)
+                }
+            }
+        }
+        
+        return array
     }
 }
