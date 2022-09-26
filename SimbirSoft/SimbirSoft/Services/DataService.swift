@@ -9,6 +9,7 @@ import Foundation
 
 protocol DataServiceProtocol {
     func getData<T: Decodable>(type: T.Type, completion: @escaping (Result<[T], Error>) -> Void)
+    func getAllData(completion: @escaping (Result<[Category], Error>) -> Void)
 }
 
 class DataService: DataServiceProtocol {

@@ -61,7 +61,6 @@ class EventsViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.events = events
-                sleep(1)
                 self.mainView.configure()
             }
         }
